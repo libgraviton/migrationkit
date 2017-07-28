@@ -1,0 +1,62 @@
+#!/usr/bin/env php
+<?php
+if (strpos(__DIR__, 'vendor') === false) {
+    require __DIR__ . '/../vendor/autoload.php';
+} else {
+    // assume vendor to be on include_path if installed
+    require 'vendor/autoload.php';
+}
+
+use Graviton\MigrationKit\Command\GenerateFromIosSchemaCommand;
+use Graviton\MigrationKit\Command\GenerateMigrationsCommand;
+use Graviton\MigrationKit\Command\GenerateFixtureEntitiesCommand;
+use Graviton\MigrationKit\Command\GenerateDefinitionMetadataCommand;
+use Graviton\MigrationKit\Utils\GenerateFromIosSchemaUtils;
+use Graviton\MigrationKit\Utils\MigrationUtils;
+use Graviton\MigrationKit\Utils\MigrationGenerateUtils;
+use Graviton\MigrationKit\Utils\GenerationUtils;
+use Graviton\MigrationKit\Utils\MetadataUtils;
+use Symfony\Component\Console\Application;
+use Symfony\Component\Finder\Finder;
+use Symfony\Component\Filesystem\Filesystem;
+
+$application = new Application();
+$application->add(
+    new GenerateFromIosSchemaCommand(
+        new GenerateFromIosSchemaUtils(new Finder()),
+        new Filesystem()
+    )
+);
+
+$loader = new Twig_Loader_Filesystem(__DIR__.'/../src/Resources/templates');
+$twig = new Twig_Environment($loader, ['autoescape' => false]);
+
+$application->add(
+    new GenerateMigrationsCommand(
+        new MigrationUtils(
+            new Finder()
+        ),
+        new MigrationGenerateUtils(
+            new Finder(),
+            $twig
+        ),
+        new GenerationUtils(),
+        new MetadataUtils(),
+        new Finder()
+    )
+);
+$application->add(
+    new GenerateFixtureEntitiesCommand(
+        __DIR__.'/../tmp/metaold/',
+        new GenerationUtils(),
+        __DIR__.'/../data-sync/_extrefMap.yml'
+    )
+);
+$application->add(
+    new GenerateDefinitionMetadataCommand(
+        new MetadataUtils(),
+        new Finder()
+    )
+);
+
+$application->run();
