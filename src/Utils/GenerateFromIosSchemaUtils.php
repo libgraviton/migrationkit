@@ -143,13 +143,21 @@ class GenerateFromIosSchemaUtils
         $this->readOverrides();
 
         $string = file_get_contents($this->definitionFile);
+
         if(mb_detect_encoding($string) != 'UTF-8') {
-            $string = iconv('ASCII', 'UTF-8//IGNORE', $string);
+            ini_set('mbstring.substitute_character', 'none');
+            $string = mb_convert_encoding($string, 'UTF-8', mb_detect_encoding($string));
         }
 
         $iosDefinition = json_decode($string, true);
         if (!$iosDefinition) {
-            throw new \Exception(json_last_error_msg());
+            throw new \Exception(
+                sprintf(
+                    'Error in JSON parsing of file %s: %s',
+                    $this->definitionFile,
+                    json_last_error_msg()
+                )
+            );
         }
 
         $this->processHierarchy($iosDefinition);
