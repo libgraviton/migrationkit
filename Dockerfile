@@ -1,9 +1,13 @@
 FROM php:7-alpine
 
 COPY . /app
-COPY src/Resources/docker/init.sh /
+ADD src/Resources/docker/init.sh /
 
-RUN chmod a+x /app/bin/docker/init.sh && \
-    apk add --no-cache tini su-exec curl git
+RUN chmod a+x /init.sh && \
+    apk add --no-cache tini su-exec curl git && \
+    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
+    cd /app && \
+    composer install --optimize-autoloader --no-interaction --no-progress && \
+    composer clear-cache
 
 ENTRYPOINT ["/sbin/tini", "--", "/init.sh"]
