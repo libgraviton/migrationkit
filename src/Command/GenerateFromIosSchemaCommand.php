@@ -1,6 +1,6 @@
 <?php
 /**
- * command for our definition generator
+ * command that generates graviton service definitions from ios schema definition
  */
 
 namespace Graviton\MigrationKit\Command;
@@ -16,7 +16,7 @@ use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Yaml\Yaml;
 
 /**
- * @author   List of contributors <https://github.com/libgraviton/graviton/graphs/contributors>
+ * @author   List of contributors <https://github.com/libgraviton/migrationkit/graphs/contributors>
  * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
  * @link     http://swisscom.ch
  */
@@ -34,10 +34,8 @@ class GenerateFromIosSchemaCommand extends Command
     private $fs;
 
     /**
-     * @param string        $destDir destination dir
-     * @param GenerateFromIosSchemaUtils $utils   utils
-     * @param Filesystem    $fs      symfony/filesystem instance
-     *
+     * @param GenerateFromIosSchemaUtils $utils utils
+     * @param Filesystem                 $fs    symfony/filesystem instance
      */
     public function __construct(
         GenerateFromIosSchemaUtils $utils,
@@ -61,12 +59,32 @@ class GenerateFromIosSchemaCommand extends Command
                 'Generates consultation definition from iOS files'
             )
             ->setDefinition(
-                new InputDefinition([
-                    new InputArgument('schemaFile', InputArgument::REQUIRED, 'Filepath where the iOS schema is located'),
-                    new InputArgument('outputDir', InputArgument::REQUIRED, 'Where to write the service definitions.'),
-                    new InputOption('infoDir', 'i', InputOption::VALUE_REQUIRED, 'Where to generate optional metadata files.'),
-                    new InputOption('overrideDir', 'o', InputOption::VALUE_REQUIRED, 'Directory path to optional overrides.')
-                ])
+                new InputDefinition(
+                    [
+                    new InputArgument(
+                        'schemaFile',
+                        InputArgument::REQUIRED,
+                        'Filepath where the iOS schema is located'
+                    ),
+                    new InputArgument(
+                        'outputDir',
+                        InputArgument::REQUIRED,
+                        'Where to write the service definitions.'
+                    ),
+                    new InputOption(
+                        'infoDir',
+                        'i',
+                        InputOption::VALUE_REQUIRED,
+                        'Where to generate optional metadata files.'
+                    ),
+                    new InputOption(
+                        'overrideDir',
+                        'o',
+                        InputOption::VALUE_REQUIRED,
+                        'Directory path to optional overrides.'
+                    )
+                    ]
+                )
             );
     }
 

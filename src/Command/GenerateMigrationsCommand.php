@@ -1,6 +1,6 @@
 <?php
 /**
- * command for our definition generator
+ * command that generates migrations from two directories
  */
 
 namespace Graviton\MigrationKit\Command;
@@ -14,19 +14,17 @@ use Graviton\MigrationKit\Utils\MetadataUtils;
 use Graviton\MigrationKit\Utils\MigrationGenerateUtils;
 use Graviton\MigrationKit\Utils\MigrationUtils;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Helper\TableSeparator;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 
 /**
- * @author   List of contributors <https://github.com/libgraviton/graviton/graphs/contributors>
+ * @author   List of contributors <https://github.com/libgraviton/migrationkit/graphs/contributors>
  * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
  * @link     http://swisscom.ch
  */
@@ -102,10 +100,11 @@ class GenerateMigrationsCommand extends Command
     private $style;
 
     /**
-     * @param string        $destDir destination dir
-     * @param GenerateFromIosSchemaUtils $utils   utils
-     * @param Filesystem    $fs      symfony/filesystem instance
-     *
+     * @param MigrationUtils         $utils                  MigrationUtils
+     * @param MigrationGenerateUtils $migrationGenerateUtils MigrationGenerateUtils
+     * @param GenerationUtils        $generationUtils        GenerationUtils
+     * @param MetadataUtils          $metadataUtils          MetadataUtils
+     * @param Finder                 $finder                 Finder
      */
     public function __construct(
         MigrationUtils $utils,
@@ -135,12 +134,30 @@ class GenerateMigrationsCommand extends Command
                 'Tries to generate migrations'
             )
             ->setDefinition(
-                new InputDefinition([
-                    new InputArgument('oldDir', InputArgument::REQUIRED, 'The directory of the *old* structure we want to migrate from'),
-                    new InputArgument('newDir', InputArgument::REQUIRED, 'The directory of the *new* structure we want to migrate to'),
-                    new InputArgument('migrationsDir', InputArgument::REQUIRED, 'Path to put the generated migrations'),
-                    new InputArgument('entityName', InputArgument::OPTIONAL, 'If the directory contains multiple exposed entities, provide the targetted one')
-                ])
+                new InputDefinition(
+                    [
+                    new InputArgument(
+                        'oldDir',
+                        InputArgument::REQUIRED,
+                        'The directory of the *old* structure we want to migrate from'
+                    ),
+                    new InputArgument(
+                        'newDir',
+                        InputArgument::REQUIRED,
+                        'The directory of the *new* structure we want to migrate to'
+                    ),
+                    new InputArgument(
+                        'migrationsDir',
+                        InputArgument::REQUIRED,
+                        'Path to put the generated migrations'
+                    ),
+                    new InputArgument(
+                        'entityName',
+                        InputArgument::OPTIONAL,
+                        'If the directory contains multiple exposed entities, provide the targetted one'
+                    )
+                    ]
+                )
             );
     }
 
@@ -156,7 +173,7 @@ class GenerateMigrationsCommand extends Command
     {
         $this->style = new SymfonyStyle($input, $output);
 
-        $this->welcomeScreen($input, $output);
+        $this->welcomeScreen();
 
         $this->prepareExecute($input);
 
@@ -186,11 +203,13 @@ class GenerateMigrationsCommand extends Command
             $rows
         );
 
-        $this->style->text([
+        $this->style->text(
+            [
             'In the table above you see the differences we could detect.',
             'Please verify if those look correct. If they seem wrong, please check the result ',
             'of the definition generation.'
-        ]);
+            ]
+        );
 
         $isCorrect = $this->style->confirm('Do the differences look correct?', true);
         if (!$isCorrect) {
@@ -233,17 +252,24 @@ class GenerateMigrationsCommand extends Command
         $this->migrationGenerateUtils->generate($diff);
     }
 
-    private function welcomeScreen($input, OutputInterface $output)
+    /**
+     * prints the welcome screen
+     *
+     * @return void
+     */
+    private function welcomeScreen()
     {
         $this->style->title('Welcome to migration-tools');
 
-        $this->style->text([
+        $this->style->text(
+            [
             'This tool tries to automatically generate migrations of service definitions.',
             'It is not a replacement for the human brain and it cannot generate everything.',
             '',
             'The ultimate goal of this tool is to generate the most common and doable cases.',
             'For the remaining cases, the tool at least should see what problems there are and tell the user.'
-        ]);
+            ]
+        );
 
         $confirm = $this->style->confirm(
             'Can you confirm that you understand that this tool does not replace your brain?',
@@ -255,6 +281,13 @@ class GenerateMigrationsCommand extends Command
         }
     }
 
+    /**
+     * prepares the execution of the migration generation
+     *
+     * @param InputInterface $input input
+     *
+     * @return void
+     */
     private function prepareExecute($input)
     {
         $this->style->note('OK.. nice.. preparing diff metadata..');
@@ -293,7 +326,16 @@ class GenerateMigrationsCommand extends Command
         $this->style->progressFinish();
     }
 
-    private function renderSingleChangeLine($entityName, $entityChange) {
+    /**
+     * renders a single line to the user
+     *
+     * @param string $entityName   entity name
+     * @param array  $entityChange change
+     *
+     * @return array
+     */
+    private function renderSingleChangeLine($entityName, $entityChange)
+    {
         $fieldChanges = [];
 
         foreach ($entityChange['props'] as $fieldName => $diff) {
@@ -330,7 +372,15 @@ class GenerateMigrationsCommand extends Command
         return [$entityName, implode(PHP_EOL, $fieldChanges)];
     }
 
-    private function getPropertyChanges(Diff $diff) {
+    /**
+     * render an actual change
+     *
+     * @param Diff $diff diff
+     *
+     * @return array
+     */
+    private function getPropertyChanges(Diff $diff)
+    {
         $changes = [];
 
         foreach ($diff->getOperations() as $fieldName => $op) {
@@ -344,13 +394,22 @@ class GenerateMigrationsCommand extends Command
                 $newValue = $this->changeClassname($op->getNewValue());
             }
 
-            $changes[] = '    '.$fieldName.': '.var_export($oldValue, true).' => '.var_export($newValue, true);
+            $changes[] = '    '.$fieldName.': '.var_export($oldValue, true).
+                ' => '.var_export($newValue, true);
         }
 
         return $changes;
     }
 
-    private function changeClassname($type) {
+    /**
+     * gets the class name of a given type for output
+     *
+     * @param string $type type
+     *
+     * @return string what to display
+     */
+    private function changeClassname($type)
+    {
         if (substr($type, 0, 6) == 'class:') {
             $parts = explode('\\', $type);
             if (count($parts) > 0) {

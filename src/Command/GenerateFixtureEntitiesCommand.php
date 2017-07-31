@@ -1,12 +1,11 @@
 <?php
 /**
- * command for our definition generator
+ * command that generates random test entities that can be inserted
  */
 
 namespace Graviton\MigrationKit\Command;
 
 use Faker\Factory;
-use Graviton\MigrationKit\Utils\GenerateFromIosSchemaUtils;
 use Graviton\MigrationKit\Utils\GenerationUtils;
 use JsonPath\JsonObject;
 use Symfony\Component\Console\Command\Command;
@@ -14,19 +13,24 @@ use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Yaml\Yaml;
 
 /**
- * @author   List of contributors <https://github.com/libgraviton/graviton/graphs/contributors>
+ * @author   List of contributors <https://github.com/libgraviton/migrationkit/graphs/contributors>
  * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
  * @link     http://swisscom.ch
  */
 class GenerateFixtureEntitiesCommand extends Command
 {
 
+    /**
+     * @var string
+     */
     private $ymlDir;
 
+    /**
+     * @var GenerationUtils
+     */
     private $generationUtils;
 
     /**
@@ -34,15 +38,20 @@ class GenerateFixtureEntitiesCommand extends Command
      */
     private $faker;
 
+    /**
+     * @var null|string
+     */
     private $extRefMapFile;
 
+    /**
+     * @var null|string
+     */
     private $extRefMap;
 
     /**
-     * @param string        $destDir destination dir
-     * @param GenerateFromIosSchemaUtils $utils   utils
-     * @param Filesystem    $fs      symfony/filesystem instance
-     *
+     * @param string          $ymlDir          yml dir
+     * @param GenerationUtils $generationUtils utils
+     * @param string          $extRefMapFile   extref map file
      */
     public function __construct(
         $ymlDir,
@@ -69,10 +78,22 @@ class GenerateFixtureEntitiesCommand extends Command
                 'Generates random example JSON entities conforming to a given structure.'
             )
             ->setDefinition(
-                new InputDefinition([
-                    new InputOption('outputDir', 'o', InputOption::VALUE_REQUIRED, 'Where to output our generated files'),
-                    new InputOption('infoDir', 'oi', InputOption::VALUE_REQUIRED, 'Where to output our meta files (YAML)')
-                ])
+                new InputDefinition(
+                    [
+                    new InputOption(
+                        'outputDir',
+                        'o',
+                        InputOption::VALUE_REQUIRED,
+                        'Where to output our generated files'
+                    ),
+                    new InputOption(
+                        'infoDir',
+                        'oi',
+                        InputOption::VALUE_REQUIRED,
+                        'Where to output our meta files (YAML)'
+                    )
+                    ]
+                )
             );
     }
 
@@ -99,9 +120,13 @@ class GenerateFixtureEntitiesCommand extends Command
         $this->generationUtils->setDirectory($this->ymlDir);
 
         $this->generateSingleEntity();
-
     }
 
+    /**
+     * generates a single entity
+     *
+     * @return string entity
+     */
     private function generateSingleEntity()
     {
         $node = new JsonObject();
@@ -130,7 +155,16 @@ class GenerateFixtureEntitiesCommand extends Command
         echo $node->getJson();
     }
 
-    private function getSingleValue($path, $information) {
+    /**
+     * gets the value for a given field
+     *
+     * @param string $path        path
+     * @param array  $information field information
+     *
+     * @return array|bool|float|null|string value
+     */
+    private function getSingleValue($path, $information)
+    {
         $value = null;
         $type = strtolower($information['type']);
         if ($type == 'varchar') {
@@ -202,13 +236,19 @@ class GenerateFixtureEntitiesCommand extends Command
         return $value;
     }
 
+    /**
+     * gets the value for an extref field
+     *
+     * @param array $information field information
+     *
+     * @return string value
+     */
     private function getExtRefLink($information)
     {
         $url = 'http://localhost';
 
-        if (
-            !isset($information['collection']) ||
-            (isset($information['collection']) && in_array('*', $information['collection']))
+        if (!isset($information['collection'])
+            || (isset($information['collection']) && in_array('*', $information['collection']))
         ) {
             $url .= '/file/'.$this->faker->domainWord;
             return $url;
@@ -218,8 +258,13 @@ class GenerateFixtureEntitiesCommand extends Command
         $intersect = array_intersect($information['collection'], $mappedTypes);
 
         if (empty($intersect)) {
-            throw new \LogicException(sprintf('Could not map extref types %s. Please specify an '.
-            'extref map and make sure it contains those types.', json_encode($information['collection'])));
+            throw new \LogicException(
+                sprintf(
+                    'Could not map extref types %s. Please specify an '.
+                    'extref map and make sure it contains those types.',
+                    json_encode($information['collection'])
+                )
+            );
         }
 
         $linkEntity = array_pop($intersect);
@@ -229,6 +274,15 @@ class GenerateFixtureEntitiesCommand extends Command
         return $url;
     }
 
+    /**
+     * gets the value for a constrained field
+     *
+     * @param mixed  $value       value
+     * @param string $type        type
+     * @param array  $constraints constraints
+     *
+     * @return float|int value
+     */
     private function getConstraintValue($value, $type, $constraints)
     {
         foreach ($constraints as $constraint) {
@@ -264,5 +318,4 @@ class GenerateFixtureEntitiesCommand extends Command
 
         return $value;
     }
-
 }

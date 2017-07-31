@@ -1,4 +1,7 @@
 <?php
+/**
+ * utils needed diffing needed for migration generation
+ */
 
 namespace Graviton\MigrationKit\Utils;
 
@@ -8,11 +11,12 @@ use Graviton\MigrationKit\Utils\Conflict\Scanner\ConflictScannerAbstract;
 use Graviton\MigrationKit\Utils\Conflict\Scanner\UnclearRenameConflictScanner;
 
 /**
- * @author   List of contributors <https://github.com/libgraviton/graviton/graphs/contributors>
+ * @author   List of contributors <https://github.com/libgraviton/migrationkit/graphs/contributors>
  * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
  * @link     http://swisscom.ch
  */
-class MigrationDiff {
+class MigrationDiff
+{
 
     /**
      * @var DiffOp[]
@@ -39,6 +43,9 @@ class MigrationDiff {
      */
     private $newDirHash;
 
+    /**
+     * @param array $diffs diffs
+     */
     public function __construct(array $diffs)
     {
         $this->conflictScanners = [
@@ -58,6 +65,11 @@ class MigrationDiff {
         return $this->diffs;
     }
 
+    /**
+     * get the diffs relevant for migrations
+     *
+     * @return array diffs
+     */
     public function getMigrationRelevantDiffs()
     {
         $diffs = [];
@@ -103,17 +115,32 @@ class MigrationDiff {
         $this->diffs = $diffs;
     }
 
+    /**
+     * sets the diffs for a given entity
+     *
+     * @param string $entityName name
+     * @param array  $diffOps    diffs
+     *
+     * @return void
+     */
     public function setDiffForEntity($entityName, $diffOps)
     {
         $this->diffs[$entityName] = $diffOps;
     }
 
+    /**
+     * if we currently have conflicts that need resolving
+     *
+     * @return bool yes or no
+     */
     public function hasConflicts()
     {
         return !empty($this->currentConflicts);
     }
 
     /**
+     * returns the current conflicts
+     *
      * @return ConflictAbstract[] conflicts
      */
     public function getConflicts()
@@ -165,13 +192,23 @@ class MigrationDiff {
         $this->newDirHash = $newDirHash;
     }
 
-    public function addConflict(ConflictAbstract $conflict) {
+    /**
+     * adds a conflict
+     *
+     * @param ConflictAbstract $conflict conflict
+     *
+     * @return void
+     */
+    public function addConflict(ConflictAbstract $conflict)
+    {
         $this->currentConflicts[get_class($conflict).'-'.$conflict->getClassName().'-'.$conflict->getFieldName()]
             = $conflict;
     }
 
     /**
      * Let the scanners run and see if we have conflicts
+     *
+     * @return void
      */
     private function computeConflicts()
     {
@@ -179,5 +216,4 @@ class MigrationDiff {
             $scanner->scan($this);
         }
     }
-
 }

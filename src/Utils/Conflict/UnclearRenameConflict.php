@@ -1,15 +1,19 @@
 <?php
+/**
+ * conflict
+ */
 
 namespace Graviton\MigrationKit\Utils\Conflict;
 
 use Graviton\MigrationKit\Utils\Conflict\Resolver\UnclearRenameConflictResolver;
 
 /**
- * @author   List of contributors <https://github.com/libgraviton/graviton/graphs/contributors>
+ * @author   List of contributors <https://github.com/libgraviton/migrationkit/graphs/contributors>
  * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
  * @link     http://swisscom.ch
  */
-class UnclearRenameConflict extends ConflictAbstract {
+class UnclearRenameConflict extends ConflictAbstract
+{
 
     /**
      * @var array
@@ -26,16 +30,15 @@ class UnclearRenameConflict extends ConflictAbstract {
      */
     private $renames = [];
 
-    public function __construct()
-    {
-    }
-
+    /**
+     * returns the resolver instance for this conflict
+     *
+     * @return ConflictResolverAbstract resolver
+     */
     public function getResolver()
     {
         return new UnclearRenameConflictResolver($this);
     }
-
-
 
     /**
      * get Additions

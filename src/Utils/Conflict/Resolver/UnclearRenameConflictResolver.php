@@ -1,25 +1,44 @@
 <?php
+/**
+ * conflict resolver
+ */
 
 namespace Graviton\MigrationKit\Utils\Conflict\Resolver;
 
 use Diff\DiffOp\Diff\Diff;
 use Diff\DiffOp\DiffOpChange;
+use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\StyleInterface;
 
 /**
- * @author   List of contributors <https://github.com/libgraviton/graviton/graphs/contributors>
+ * @author   List of contributors <https://github.com/libgraviton/migrationkit/graphs/contributors>
  * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
  * @link     http://swisscom.ch
  */
-class UnclearRenameConflictResolver extends ConflictResolverAbstract {
+class UnclearRenameConflictResolver extends ConflictResolverAbstract
+{
 
+    /**
+     * Return a description for this conflict
+     *
+     * @return string
+     */
     public function getConflictDescription()
     {
         return 'Possible rename';
     }
 
-    public function interactiveResolve(StyleInterface $style) {
-        $style->text([
+    /**
+     * Handle the resolving of this conflict with the user
+     *
+     * @param StyleInterface $style style
+     *
+     * @return void
+     */
+    public function interactiveResolve(StyleInterface $style)
+    {
+        $style->text(
+            [
             sprintf(
                 '<question>In the entity "%s" we have added and removed fields.</question>',
                 $this->conflict->getClassName()
@@ -54,20 +73,24 @@ class UnclearRenameConflictResolver extends ConflictResolverAbstract {
                 [[$this->getFieldList($removals), $this->getFieldList($additions)]]
             );
 
-            $style->text([
+            $style->text(
+                [
                 '<info>Are there any renames in this change?</info>',
                 'Please enter one of the following to specify what to do:'
-            ]);
+                ]
+            );
 
-            $style->listing([
-                '<question>r[NUMBER]:[NUMBER]</question> = to specify a rename according to the table above. Each side (removal/'.
-                'addition) has a number preceding the field. So specify a rename from deleted field 0 to added field 2'.
-                ', you would enter "r0:2".',
+            $style->listing(
+                [
+                '<question>r[NUMBER]:[NUMBER]</question> = to specify a rename according to the table above. '.
+                'Each side (removal/addition) has a number preceding the field. So specify a rename from deleted '.
+                'field 0 to added field 2, you would enter "r0:2".',
                 '<question>d[NUMBER]</question> = to delete a previously specified rename in case of an error.'.
                 ' The number refers to the number in front of the rename in the rename table. So to delete '.
                 'rename 1, you would enter "d1".',
                 '<question>n</question> = no renames that need specifying'
-            ]);
+                ]
+            );
 
             $userInput = $style->ask('Enter a command');
 
@@ -80,7 +103,19 @@ class UnclearRenameConflictResolver extends ConflictResolverAbstract {
         $this->conflict->setIsResolved(true);
     }
 
-    private function applyUserInput($userInput, $style, &$additions, &$removals, &$renames) {
+    /**
+     * apply a single user input to our dialog
+     *
+     * @param string         $userInput input
+     * @param StyleInterface $style     style
+     * @param array          $additions additions
+     * @param array          $removals  removals
+     * @param array          $renames   renames
+     *
+     * @return void
+     */
+    private function applyUserInput($userInput, $style, &$additions, &$removals, &$renames)
+    {
         $matches = [];
         if (preg_match('/^r([0-9]+):([0-9]+)$/i', $userInput, $matches) === 1) {
             $fromField = (int) $matches[1];
@@ -116,11 +151,28 @@ class UnclearRenameConflictResolver extends ConflictResolverAbstract {
         }
     }
 
-    private function error($output, $message) {
+    /**
+     * renders an error
+     *
+     * @param OutputInterface $output  output
+     * @param string          $message message
+     *
+     * @return void
+     */
+    private function error($output, $message)
+    {
         $output->writeln('<error>'.PHP_EOL.$message.PHP_EOL.'</error>'.PHP_EOL);
     }
 
-    private function getFieldList($fields) {
+    /**
+     * gets a list of fields to print out
+     *
+     * @param array $fields fields
+     *
+     * @return string field list
+     */
+    private function getFieldList($fields)
+    {
         $fieldList = [];
         foreach ($fields as $index => $fieldName) {
             $fieldList[] = $index.': '.$fieldName;
@@ -128,6 +180,11 @@ class UnclearRenameConflictResolver extends ConflictResolverAbstract {
         return implode(PHP_EOL, $fieldList);
     }
 
+    /**
+     * After having the user input, resolve the conflict in the diffs
+     *
+     * @return void
+     */
     public function resolve()
     {
         // let's apply our renames..
@@ -146,11 +203,16 @@ class UnclearRenameConflictResolver extends ConflictResolverAbstract {
             $oldField = $ops['props'][$oldName]->getRemovals();
             $newField = $ops['props'][$newName]->getAdditions();
 
-            $ops['props'][$oldName] = new Diff([
+            $ops['props'][$oldName] = new Diff(
+                [
                 'name' => new DiffOpChange($oldName, $newName),
-                'required' => new DiffOpChange($oldField['required']->getOldValue(), $newField['required']->getNewValue()),
+                'required' => new DiffOpChange(
+                    $oldField['required']->getOldValue(),
+                    $newField['required']->getNewValue()
+                ),
                 'type' => new DiffOpChange($oldField['type']->getOldValue(), $newField['type']->getNewValue())
-            ]);
+                ]
+            );
 
             // unset the new field
             unset($ops['props'][$newName]);

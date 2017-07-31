@@ -17,7 +17,7 @@ use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 
 /**
- * @author   List of contributors <https://github.com/libgraviton/graviton/graphs/contributors>
+ * @author   List of contributors <https://github.com/libgraviton/migrationkit/graphs/contributors>
  * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
  * @link     http://swisscom.ch
  */
@@ -35,10 +35,8 @@ class GenerateDefinitionMetadataCommand extends Command
     private $finder;
 
     /**
-     * @param string        $destDir destination dir
-     * @param GenerateFromIosSchemaUtils $utils   utils
-     * @param Filesystem    $fs      symfony/filesystem instance
-     *
+     * @param MetadataUtils $metadataUtils metadata utils
+     * @param Finder        $finder        finder
      */
     public function __construct(
         MetadataUtils $metadataUtils,
@@ -62,11 +60,25 @@ class GenerateDefinitionMetadataCommand extends Command
                 'Generates YML metadata files from service definitions'
             )
             ->setDefinition(
-                new InputDefinition([
-                    new InputArgument('sourceDir', InputArgument::REQUIRED, 'Where to read definitions from.'),
-                    new InputArgument('outputDir', InputArgument::REQUIRED, 'Where to output our meta files (YAML)'),
-                    new InputArgument('entityName', InputArgument::OPTIONAL, 'Entity name to choose if more than one is exposed')
-                ])
+                new InputDefinition(
+                    [
+                    new InputArgument(
+                        'sourceDir',
+                        InputArgument::REQUIRED,
+                        'Where to read definitions from.'
+                    ),
+                    new InputArgument(
+                        'outputDir',
+                        InputArgument::REQUIRED,
+                        'Where to output our meta files (YAML)'
+                    ),
+                    new InputArgument(
+                        'entityName',
+                        InputArgument::OPTIONAL,
+                        'Entity name to choose if more than one is exposed'
+                    )
+                    ]
+                )
             );
     }
 

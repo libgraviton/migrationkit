@@ -8,7 +8,7 @@ namespace Graviton\MigrationKit\Utils;
 use Symfony\Component\Finder\Finder;
 
 /**
- * @author   List of contributors <https://github.com/libgraviton/graviton/graphs/contributors>
+ * @author   List of contributors <https://github.com/libgraviton/migrationkit/graphs/contributors>
  * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
  * @link     http://swisscom.ch
  */
@@ -144,7 +144,7 @@ class GenerateFromIosSchemaUtils
 
         $string = file_get_contents($this->definitionFile);
 
-        if(mb_detect_encoding($string) != 'UTF-8') {
+        if (mb_detect_encoding($string) != 'UTF-8') {
             ini_set('mbstring.substitute_character', 'none');
             $string = mb_convert_encoding($string, 'UTF-8', mb_detect_encoding($string));
         }
@@ -384,7 +384,6 @@ class GenerateFromIosSchemaUtils
         }
 
         $this->entitiesPath[$type] = array_unique(array_merge($this->entitiesPath[$type], [$path]));
-
     }
 
     /**
@@ -690,6 +689,7 @@ class GenerateFromIosSchemaUtils
 
     /**
      * a function to derive a field title from the name
+     *
      * @todo be more creative here
      *
      * @param array $fieldDef field definition

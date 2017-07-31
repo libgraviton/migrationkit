@@ -1,4 +1,7 @@
 <?php
+/**
+ * utils needed for metadata generation
+ */
 
 namespace Graviton\MigrationKit\Utils;
 
@@ -6,13 +9,21 @@ use Symfony\Component\Finder\Finder;
 use Symfony\Component\Yaml\Yaml;
 
 /**
- * @author   List of contributors <https://github.com/libgraviton/graviton/graphs/contributors>
+ * @author   List of contributors <https://github.com/libgraviton/migrationkit/graphs/contributors>
  * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
  * @link     http://swisscom.ch
  */
-class MetadataUtils {
+class MetadataUtils
+{
 
+    /**
+     * @var string
+     */
     const FILENAME_ENTITIES_PATH = '_entitiesPath.yml';
+
+    /**
+     * @var string
+     */
     const FILENAME_FIELD_LIST = '_fieldList.yml';
 
     /**
@@ -35,12 +46,24 @@ class MetadataUtils {
      */
     private $exposedEntityName;
 
+    /**
+     * @var array
+     */
     private $entities = [];
 
+    /**
+     * @var array
+     */
     private $exposedEntities = [];
 
+    /**
+     * @var array
+     */
     private $resultFieldList = [];
 
+    /**
+     * @var array
+     */
     private $resultEntitiesPath = [];
 
     /**
@@ -84,7 +107,9 @@ class MetadataUtils {
             throw new \LogicException(sprintf("Directory %s does not exist!", $outputDir));
         }
 
-        if (substr($outputDir, -1) !== '/') $outputDir .= '/';
+        if (substr($outputDir, -1) !== '/') {
+            $outputDir .= '/';
+        }
         $this->outputDir = $outputDir;
     }
 
@@ -101,10 +126,7 @@ class MetadataUtils {
     }
 
     /**
-     * execute the command
-     *
-     * @param InputInterface  $input  input
-     * @param OutputInterface $output output
+     * generate
      *
      * @return void
      */
@@ -135,6 +157,11 @@ class MetadataUtils {
         file_put_contents($this->outputDir.self::FILENAME_FIELD_LIST, Yaml::dump($this->resultFieldList));
     }
 
+    /**
+     * loads the entities from the json definition files
+     *
+     * @return void
+     */
     private function loadEntities()
     {
         $finder = $this->finder;
@@ -160,6 +187,14 @@ class MetadataUtils {
         }
     }
 
+    /**
+     * generates the metadata
+     *
+     * @param string $entity entity name
+     * @param array  $path   path
+     *
+     * @return void
+     */
     private function generateMetadata($entity, $path = [])
     {
         $this->resultEntitiesPath[$entity][] = implode('.', $path);
@@ -186,6 +221,13 @@ class MetadataUtils {
         }
     }
 
+    /**
+     * gets the single class name for a class type
+     *
+     * @param array $field field
+     *
+     * @return string class name
+     */
     private function getFieldEntityName($field)
     {
         $class = null;

@@ -11,6 +11,7 @@ use Graviton\MigrationKit\Command\GenerateFromIosSchemaCommand;
 use Graviton\MigrationKit\Command\GenerateMigrationsCommand;
 use Graviton\MigrationKit\Command\GenerateFixtureEntitiesCommand;
 use Graviton\MigrationKit\Command\GenerateDefinitionMetadataCommand;
+use Graviton\MigrationKit\Command\GenerateMigrationsVersionCommand;
 use Graviton\MigrationKit\Utils\GenerateFromIosSchemaUtils;
 use Graviton\MigrationKit\Utils\MigrationUtils;
 use Graviton\MigrationKit\Utils\MigrationGenerateUtils;
@@ -56,6 +57,11 @@ $application->add(
     new GenerateDefinitionMetadataCommand(
         new MetadataUtils(),
         new Finder()
+    )
+);
+$application->add(
+    new GenerateMigrationsVersionCommand(
+        new Filesystem()
     )
 );
 

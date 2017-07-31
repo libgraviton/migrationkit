@@ -1,15 +1,19 @@
 <?php
+/**
+ * utils needed for generating the migrations itself (rendering them)
+ */
 
 namespace Graviton\MigrationKit\Utils;
 
 use Symfony\Component\Finder\Finder;
 
 /**
- * @author   List of contributors <https://github.com/libgraviton/graviton/graphs/contributors>
+ * @author   List of contributors <https://github.com/libgraviton/migrationkit/graphs/contributors>
  * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
  * @link     http://swisscom.ch
  */
-class MigrationGenerateUtils {
+class MigrationGenerateUtils
+{
 
     private $finder;
 
@@ -33,6 +37,10 @@ class MigrationGenerateUtils {
      */
     private $outputDirectory;
 
+    /**
+     * @param Finder            $finder finder
+     * @param \Twig_Environment $twig   twig
+     */
     public function __construct(Finder $finder, \Twig_Environment $twig)
     {
         $this->finder = $finder;
@@ -75,6 +83,13 @@ class MigrationGenerateUtils {
         $this->outputDirectory = $outputDirectory;
     }
 
+    /**
+     * generate a single migration
+     *
+     * @param MigrationDiff $diff diff
+     *
+     * @return void
+     */
     public function generate(MigrationDiff $diff)
     {
         if (is_null($this->outputDirectory)) {
@@ -109,7 +124,6 @@ class MigrationGenerateUtils {
 
                 $partials[] = $templatePartial->render(array_merge($baseParams, $addedFields));
             }
-
         }
 
         file_put_contents(
@@ -123,6 +137,11 @@ class MigrationGenerateUtils {
         );
     }
 
+    /**
+     * get the migration id
+     *
+     * @return string id
+     */
     private function getMigrationId()
     {
         return date('YmdHms');

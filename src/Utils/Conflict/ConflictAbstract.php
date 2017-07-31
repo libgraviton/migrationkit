@@ -1,16 +1,23 @@
 <?php
+/**
+ * conflict
+ */
 
 namespace Graviton\MigrationKit\Utils\Conflict;
 
 use Graviton\MigrationKit\Utils\Conflict\Resolver\ConflictResolverAbstract;
 
 /**
- * @author   List of contributors <https://github.com/libgraviton/graviton/graphs/contributors>
+ * @author   List of contributors <https://github.com/libgraviton/migrationkit/graphs/contributors>
  * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
  * @link     http://swisscom.ch
  */
-abstract class ConflictAbstract {
+abstract class ConflictAbstract
+{
 
+    /**
+     * @var bool
+     */
     private $isResolved = false;
 
     /**
@@ -29,7 +36,9 @@ abstract class ConflictAbstract {
     private $fieldName;
 
     /**
-     * @return ConflictResolverAbstract
+     * returns the resolver instance for this conflict
+     *
+     * @return ConflictResolverAbstract resolver
      */
     abstract public function getResolver();
 

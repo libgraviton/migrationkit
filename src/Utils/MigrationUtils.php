@@ -1,4 +1,7 @@
 <?php
+/**
+ * prepares a structure we can use to easily detect changes
+ */
 
 namespace Graviton\MigrationKit\Utils;
 
@@ -9,11 +12,12 @@ use Diff\DiffOp\DiffOpRemove;
 use Symfony\Component\Finder\Finder;
 
 /**
- * @author   List of contributors <https://github.com/libgraviton/graviton/graphs/contributors>
+ * @author   List of contributors <https://github.com/libgraviton/migrationkit/graphs/contributors>
  * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
  * @link     http://swisscom.ch
  */
-class MigrationUtils {
+class MigrationUtils
+{
 
     /**
      * TODO rewrite to use the metadata files also!
@@ -29,6 +33,9 @@ class MigrationUtils {
      */
     private $lastScanHash;
 
+    /**
+     * @param Finder $finder finder
+     */
     public function __construct(Finder $finder)
     {
         $this->finder = $finder;
@@ -36,6 +43,14 @@ class MigrationUtils {
         $this->differList = new ListDiffer();
     }
 
+    /**
+     * compute the differences between two dirs with service definitions
+     *
+     * @param string $oldDir old dir
+     * @param string $newDir new dir
+     *
+     * @return MigrationDiff the diff
+     */
     public function compute($oldDir, $newDir)
     {
         $changes = [];
@@ -70,6 +85,12 @@ class MigrationUtils {
         return $diff;
     }
 
+    /**
+     * create diffs for fields
+     *
+     * @param array $diffList diff list
+     * @return array
+     */
     private function prepareFieldDiffKeys(array $diffList)
     {
         $fieldList = [];
@@ -85,6 +106,13 @@ class MigrationUtils {
         return $fieldList;
     }
 
+    /**
+     * collect the attributes
+     *
+     * @param string $dir directory
+     *
+     * @return array attributes
+     */
     private function collectAttributes($dir)
     {
         $data = [];
