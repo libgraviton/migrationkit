@@ -155,6 +155,11 @@ class GenerateMigrationsCommand extends Command
                         'entityName',
                         InputArgument::OPTIONAL,
                         'If the directory contains multiple exposed entities, provide the targetted one'
+                    ),
+                    new InputArgument(
+                        'namespace',
+                        InputArgument::OPTIONAL,
+                        'Class namespace for the generated migration'
                     )
                     ]
                 )
@@ -248,6 +253,7 @@ class GenerateMigrationsCommand extends Command
         }
 
         // generate migration here
+        $this->migrationGenerateUtils->setClassNamespace($input->getArgument('namespace'));
         $this->migrationGenerateUtils->setOutputDirectory($this->migrationsDir);
         $this->migrationGenerateUtils->generate($diff);
     }

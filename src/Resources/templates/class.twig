@@ -1,6 +1,5 @@
 <?php
-
-namespace Graviton\MigrationKit\Migrations\MongoDB;
+{% if namespace != null %}namespace {{ namespace }};{% endif %}
 
 use AntiMattr\MongoDB\Migrations\AbstractMigration;
 use Doctrine\MongoDB\Database;

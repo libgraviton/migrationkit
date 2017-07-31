@@ -15,6 +15,9 @@ use Symfony\Component\Finder\Finder;
 class MigrationGenerateUtils
 {
 
+    /**
+     * @var Finder
+     */
     private $finder;
 
     /**
@@ -36,6 +39,11 @@ class MigrationGenerateUtils
      * @var string
      */
     private $outputDirectory;
+
+    /**
+     * @var string
+     */
+    private $classNamespace;
 
     /**
      * @param Finder            $finder finder
@@ -84,6 +92,18 @@ class MigrationGenerateUtils
     }
 
     /**
+     * set ClassNamespace
+     *
+     * @param string $classNamespace classNamespace
+     *
+     * @return void
+     */
+    public function setClassNamespace($classNamespace)
+    {
+        $this->classNamespace = $classNamespace;
+    }
+
+    /**
      * generate a single migration
      *
      * @param MigrationDiff $diff diff
@@ -104,6 +124,7 @@ class MigrationGenerateUtils
             'migrationId' => $migrationId,
             'className' => 'Version'.$migrationId,
             'exposedEntity' => $this->generationUtilsOld->getRootEntity(),
+            'namespace' => $this->classNamespace,
             'migData' => base64_encode(serialize($diff))
         ];
 

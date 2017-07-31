@@ -76,6 +76,11 @@ class GenerateMigrationsVersionCommand extends Command
                         'entityName',
                         InputArgument::OPTIONAL,
                         'If the directory contains multiple exposed entities, provide the targetted one'
+                    ),
+                    new InputArgument(
+                        'namespace',
+                        InputArgument::OPTIONAL,
+                        'Class namespace for the generated migration'
                     )
                     ]
                 )
@@ -146,7 +151,8 @@ class GenerateMigrationsVersionCommand extends Command
             'oldDir' => $tmpDir.$definitionDir,
             'newDir' => $serviceDir,
             'migrationsDir' => $input->getArgument('migrationsDir'),
-            'entityName' => $input->getArgument('entityName')
+            'entityName' => $input->getArgument('entityName'),
+            'namespace' => $input->getArgument('namespace')
         ];
 
         $appInput = new ArrayInput($arguments);
