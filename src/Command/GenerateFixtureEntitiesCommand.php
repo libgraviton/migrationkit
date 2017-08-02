@@ -9,10 +9,11 @@ use Faker\Factory;
 use Graviton\MigrationKit\Utils\GenerationUtils;
 use JsonPath\JsonObject;
 use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Yaml\Yaml;
 
 /**
@@ -34,6 +35,11 @@ class GenerateFixtureEntitiesCommand extends Command
     private $generationUtils;
 
     /**
+     * @var Filesystem
+     */
+    private $fs;
+
+    /**
      * @var \Faker\Generator
      */
     private $faker;
@@ -49,20 +55,17 @@ class GenerateFixtureEntitiesCommand extends Command
     private $extRefMap;
 
     /**
-     * @param string          $ymlDir          yml dir
      * @param GenerationUtils $generationUtils utils
-     * @param string          $extRefMapFile   extref map file
+     * @param Filesystem      $fs              fs
      */
     public function __construct(
-        $ymlDir,
         GenerationUtils $generationUtils,
-        $extRefMapFile = null
+        Filesystem $fs
     ) {
         parent::__construct();
-        $this->ymlDir = $ymlDir;
         $this->generationUtils = $generationUtils;
+        $this->fs = $fs;
         $this->faker = Factory::create();
-        $this->extRefMapFile = $extRefMapFile;
     }
 
     /**
@@ -80,17 +83,26 @@ class GenerateFixtureEntitiesCommand extends Command
             ->setDefinition(
                 new InputDefinition(
                     [
-                    new InputOption(
-                        'outputDir',
-                        'o',
-                        InputOption::VALUE_REQUIRED,
-                        'Where to output our generated files'
+                    new InputArgument(
+                        'metaDir',
+                        InputArgument::REQUIRED,
+                        'Where to read the YML metafiles from.'
                     ),
-                    new InputOption(
-                        'infoDir',
-                        'oi',
-                        InputOption::VALUE_REQUIRED,
-                        'Where to output our meta files (YAML)'
+                    new InputArgument(
+                        'outputDir',
+                        InputArgument::REQUIRED,
+                        'Where to output the files'
+                    ),
+                    new InputArgument(
+                        'number',
+                        InputArgument::OPTIONAL,
+                        'Amount of entities to generate',
+                        10
+                    ),
+                    new InputArgument(
+                        'refMap',
+                        InputArgument::OPTIONAL,
+                        'Path to an optional refMap File, mapping extref Collections to urls'
                     )
                     ]
                 )
@@ -107,7 +119,15 @@ class GenerateFixtureEntitiesCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        // override here
+        $number = (int) $input->getArgument('number');
+
+        $outputDir = $input->getArgument('outputDir');
+        if (substr($outputDir, -1) != '/') {
+            $outputDir .= '/';
+        }
+
+        $this->ymlDir = $input->getArgument('metaDir');
+        $this->extRefMapFile = $input->getArgument('refMap');
 
         // extrefmap file?
         if (!is_null($this->extRefMapFile)) {
@@ -119,25 +139,45 @@ class GenerateFixtureEntitiesCommand extends Command
 
         $this->generationUtils->setDirectory($this->ymlDir);
 
-        $this->generateSingleEntity();
+        for ($i = 0; $i < $number; $i++) {
+            $entity = $this->generateSingleEntity();
+            $filename = $outputDir.$entity['id'].'.json';
+            $this->fs->dumpFile($filename, json_encode($entity['entity'], JSON_PRETTY_PRINT));
+            $output->writeln('Wrote '.$filename);
+        }
     }
 
     /**
      * generates a single entity
      *
-     * @return string entity
+     * @return array array of id and entity
      */
     private function generateSingleEntity()
     {
-        $node = new JsonObject();
+        $node = new JsonObject(null, true);
 
         foreach ($this->generationUtils->getFieldList() as $path => $info) {
             $value = $this->getSingleValue($path, $info);
             if (!is_null($value)) {
                 $jsonPath = $this->generationUtils->translatePathToJsonPath($path);
+
                 // if the last is an array, we don't want to set it as we set a random number of elements as array
                 if (substr($jsonPath, -3) == '[*]') {
                     $jsonPath = substr($jsonPath, 0, -3);
+                }
+
+                /** FILL ARRAYS */
+                $arrayParts = explode('[*]', $jsonPath);
+                // take the last away
+                array_pop($arrayParts);
+
+                foreach ($arrayParts as $idx => $arrayPart) {
+                    $thisArrayPart = implode('[*]', array_slice($arrayParts, 0, $idx + 1));
+
+                    // do we have an array there?
+                    if ($node->get($thisArrayPart) === false) {
+                        $node->set($thisArrayPart, $this->getRandomSizedArray());
+                    }
                 }
 
                 // apply exposeAs
@@ -152,7 +192,17 @@ class GenerateFixtureEntitiesCommand extends Command
             }
         }
 
-        echo $node->getJson();
+
+        // does have id?
+        $id = $node->get('$.id');
+        if ($id === false) {
+            $id = uniqid();
+        }
+
+        return [
+            'id' => $id,
+            'entity' => $node->getValue()
+        ];
     }
 
     /**
@@ -213,7 +263,7 @@ class GenerateFixtureEntitiesCommand extends Command
             $value = $this->faker->words(2, true);
         } elseif ($this->generationUtils->isClassArrayType($path)) {
             // array of object
-            $value = array_fill(0, $this->faker->numberBetween(1, 5), []);
+            $value = $this->getRandomSizedArray();
         } elseif ($type == 'object') {
             // array of object
             $value = [
@@ -234,6 +284,16 @@ class GenerateFixtureEntitiesCommand extends Command
         }
 
         return $value;
+    }
+
+    /**
+     * Returns a randomly sized empty array
+     *
+     * @return array random sized array
+     */
+    private function getRandomSizedArray()
+    {
+        return array_fill(0, $this->faker->numberBetween(1, 5), []);
     }
 
     /**

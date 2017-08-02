@@ -14,9 +14,9 @@
   },
   "scripts": {
     "check": [
-      "./vendor/bin/phpcs -p --standard=PSR1 src/",
-      "./vendor/bin/phpcs -p --standard=PSR2 src/",
-      "./vendor/bin/phpcs -p --standard=./vendor/libgraviton/codesniffer src/"
+      "./vendor/bin/phpcs -p --standard=PSR1 --ignore='*/Tests/*' src/",
+      "./vendor/bin/phpcs -p --standard=PSR2 --ignore='*/Tests/*' src/",
+      "./vendor/bin/phpcs -p --standard=./vendor/libgraviton/codesniffer --ignore='*/Tests/*' src/"
     ]
   },
   "require": {

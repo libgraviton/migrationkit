@@ -48,9 +48,8 @@ $application->add(
 );
 $application->add(
     new GenerateFixtureEntitiesCommand(
-        __DIR__.'/../tmp/metaold/',
         new GenerationUtils(),
-        __DIR__.'/../data-sync/_extrefMap.yml'
+        new Filesystem()
     )
 );
 $application->add(
@@ -65,4 +64,6 @@ $application->add(
     )
 );
 
-$application->run();
+if (!isset($doRun)) {
+    $application->run();
+}
