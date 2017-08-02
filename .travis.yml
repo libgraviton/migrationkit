@@ -1,0 +1,19 @@
+language: php
+sudo: false
+services:
+  - mongodb
+addons:
+  - mongodb: '3.4.4'
+before_script:
+  - free -m
+  - composer install --no-interaction  --ignore-platform-reqs --no-scripts --profile
+  - wget https://scrutinizer-ci.com/ocular.phar
+php:
+  - 7.1
+script:
+  - composer check
+  - vendor/bin/phpunit --coverage-clover=coverage.clover
+  - php ocular.phar code-coverage:upload --format=php-clover coverage.clover
+cache:
+  directories:
+    - vendor/

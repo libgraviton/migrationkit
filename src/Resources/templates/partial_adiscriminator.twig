@@ -1,0 +1,53 @@
+{% if diff.getChanges()|length > 0 %}
+    /**
+    * migration for entity {{ entityName }}, field {{ fieldName }}
+    **/
+
+    $entityPaths = [
+        '{{ entityPaths }}'
+    ];
+
+    foreach ($entityPaths as $path) {
+        $objs = $rec->getJsonObjects($path);
+        if ($objs === false) {
+            continue;
+        }
+
+        foreach ($objs as $obj) {
+            {% set thisChanges = diff.getChanges() %}
+
+            {% if thisChanges.name and thisChanges.name.getOldValue() != thisChanges.name.getNewValue() %}
+
+                // name change
+                $fieldNameFrom = '{{ thisChanges.name.getOldValue() }}';
+                $fieldNameTo = '{{ thisChanges.name.getNewValue() }}';
+
+                // check to see it hasn't the new field already
+                $currentValue = $obj->get('$.'.$fieldNameTo);
+                if ($currentValue === false) {
+                    $fieldValue = $obj->get('$.'.$fieldNameFrom);
+                    $obj->set('$.'.$fieldNameTo, $fieldValue);
+
+                    // save a renamed copy
+                    $obj->set('$[\'_'.$fieldNameFrom.'__migrated\']', $fieldValue);
+                    // remove original
+                    $obj->remove('$', $fieldNameFrom);
+
+                    // mark that we modified something
+                    $isDirty = true;
+                }
+
+            {% endif %}
+
+            {% if thisChanges.required and thisChanges.required.getOldValue() != thisChanges.required.getNewValue() and thisChanges.required.getNewValue() == false %}
+                // required change
+            {% endif %}
+
+            {% if thisChanges.type and thisChanges.type.getOldValue() != thisChanges.type.getNewValue() %}
+                // type change
+            {% endif %}
+
+        }
+
+    }
+{% endif %}

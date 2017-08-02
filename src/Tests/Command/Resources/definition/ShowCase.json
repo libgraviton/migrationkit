@@ -1,0 +1,159 @@
+{
+  "id": "ShowCase",
+  "description": "A service showcasing all of our generator features",
+  "service": {
+    "readOnly": false,
+    "routerBase": "/hans/showcase/"
+  },
+  "target": {
+    "indexes": [],
+    "relations": [],
+    "fields": [
+      {
+        "name": "id",
+        "type": "varchar",
+        "description": "Unique identifier for an item."
+      },
+      {
+        "name": "anotherInt",
+        "type": "INT",
+        "description": "Just a nice integer",
+        "required": true
+      },
+      {
+        "name": "testField",
+        "type": "varchar",
+        "title": "A testing title",
+        "description": "A lengthy and detailed description.",
+        "required": true,
+        "translatable": true
+      },
+      {
+        "name": "email",
+        "type": "varchar",
+        "title": "email",
+        "description": "A field containing a email Constraint",
+        "constraints": [
+          {
+            "name": "Email",
+            "options": [
+              {
+                "name": "strict",
+                "value": "true"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "someOtherField",
+        "type": "varchar",
+        "title": "Another field",
+        "description": "A very nice field",
+        "translatable": true
+      },
+      {
+        "name": "aBoolean",
+        "type": "boolean",
+        "title": "Some boolean",
+        "description": "Everybody likes a good ol' bool",
+        "required": true
+      },
+      {
+        "name": "optionalBoolean",
+        "type": "boolean",
+        "title": "Some other boolean",
+        "description": "Everybody likes a good ol' bool"
+      },
+      {
+        "name": "someFloatyDouble",
+        "type": "double",
+        "title": "Floaty double",
+        "description": "An int with precision.."
+      },
+      {
+        "name": "modificationDate",
+        "type": "datetime",
+        "title": "An important date",
+        "description": "Don't forget to save the date"
+      },
+      {
+        "name": "other",
+        "type": "class:Graviton\\AnotherEntityBundle\\Document\\AnotherEntity",
+        "title": "Other stuff",
+        "description": "Other stuff",
+        "required": false
+      },
+      {
+        "name": "others",
+        "type": "class:Graviton\\AnotherEntityBundle\\Document\\AnotherEntity[]",
+        "title": "Other stuff",
+        "description": "Other stuff"
+      },
+      {
+        "name": "contactCode.someDate",
+        "type": "datetime",
+        "title": "Another datetime",
+        "description": "Who doesn't like a datetime??"
+      },
+      {
+        "name": "contactCode.text",
+        "type": "varchar",
+        "translatable": true,
+        "title": "Meaning of the code",
+        "description": "Some text to the code.."
+      },
+      {
+        "name": "nestedArray.0.name",
+        "type": "varchar",
+        "title": "Name of nested array",
+        "description": "Some text"
+      },
+      {
+        "name": "deepNestedArray.very.deep.glorious.0.object",
+        "type": "varchar",
+        "title": "Array of deep nested objects",
+        "description": "Deep nesting is good.. is it?"
+      },
+      {
+        "name": "deepNestedProperty.thisis.one.goes.very.deep.down.thats.good",
+        "type": "varchar",
+        "title": "Deep string",
+        "description": "This one goes deep..."
+      },
+      {
+        "name": "unstructuredObject",
+        "type": "object",
+        "title": "Some data blob",
+        "description": "Unstructured information"
+      },
+      {
+        "name": "nestedApps.0.ref",
+        "type": "extref",
+        "title": "Nested array of apps",
+        "exposeAs": "$ref",
+        "collection": [
+          "App"
+        ]
+      },
+      {
+        "name": "choices",
+        "type": "string",
+        "title": "Choices",
+        "required": true,
+        "description": "A field containing an ENum values restricted by constraints",
+        "constraints": [
+          {
+            "name": "Choice",
+            "options": [
+              {
+                "name": "choices",
+                "value": "<|>|=|>=|<=|<>"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

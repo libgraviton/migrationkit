@@ -1,0 +1,139 @@
+{
+  "type": "EVJTestEntity",
+  "polymorphic": false,
+  "properties": [
+    {
+      "name": "id",
+      "comment": "The unique identifier of this object",
+      "required": true,
+      "content": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "fieldToBeRemoved",
+      "comment": "Field to be removed by override",
+      "required": true,
+      "content": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "fieldToBeAddedStuff",
+      "comment": "Field to be added stuff by override",
+      "required": true,
+      "content": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "creationDate",
+      "comment": "",
+      "required": false,
+      "content": {
+        "type": "datetime"
+      }
+    },
+    {
+      "name": "owner",
+      "comment": "Owner",
+      "required": false,
+      "content": {
+        "type": "extref"
+      }
+    },
+    {
+      "name": "someObject",
+      "comment": "",
+      "required": false,
+      "content": {
+        "type": "dictionary<string, any>",
+        "content": { "type": "any" }
+      }
+    },
+    {
+      "name": "subclass",
+      "comment": "Other entity",
+      "required": false,
+      "content": {
+        "type": "EVJOtherEntity",
+        "polymorphic": false,
+        "properties": [
+          {
+            "name": "someNumber",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "someDecimal",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "decimal"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "subclassRepeated",
+      "comment": "Other entity",
+      "required": false,
+      "content": {
+        "type": "EVJOtherEntity",
+        "polymorphic": false,
+        "properties": [
+          {
+            "name": "someNumber",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "someDecimal",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "decimal"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "persons",
+      "comment": "",
+      "required": false,
+      "content": {
+        "type": "array<EVJPerson>",
+        "content": {
+          "type": "EVJPerson",
+          "polymorphic": false,
+          "properties": [
+            {
+              "name": "name",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "dateOfBirth",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "datetime"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
