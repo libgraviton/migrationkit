@@ -11,6 +11,7 @@ use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
 
@@ -58,11 +59,6 @@ class GenerateMigrationsVersionCommand extends Command
                         'The path to your git clone of the project to use.'
                     ),
                     new InputArgument(
-                        'branch',
-                        InputArgument::REQUIRED,
-                        'The branch to switch to for our diff. Use "develop" for a branch or "v1.0.0" for a tag.'
-                    ),
-                    new InputArgument(
                         'relativeDefinitionDir',
                         InputArgument::REQUIRED,
                         'The directory with the service definitions, relative to <baseDir>.'
@@ -73,13 +69,20 @@ class GenerateMigrationsVersionCommand extends Command
                         'Path to put the generated migrations'
                     ),
                     new InputArgument(
+                        'branch',
+                        InputArgument::REQUIRED,
+                        'The branch to switch to for our diff. Use "develop" for a branch or "v1.0.0" for a tag.'
+                    ),
+                    new InputOption(
                         'entityName',
-                        InputArgument::OPTIONAL,
+                        'e',
+                        InputOption::VALUE_REQUIRED,
                         'If the directory contains multiple exposed entities, provide the targetted one'
                     ),
-                    new InputArgument(
+                    new InputOption(
                         'namespace',
-                        InputArgument::OPTIONAL,
+                        'ns',
+                        InputOption::VALUE_REQUIRED,
                         'Class namespace for the generated migration'
                     )
                     ]
@@ -151,8 +154,8 @@ class GenerateMigrationsVersionCommand extends Command
             'oldDir' => $tmpDir.$definitionDir,
             'newDir' => $serviceDir,
             'migrationsDir' => $input->getArgument('migrationsDir'),
-            'entityName' => $input->getArgument('entityName'),
-            'namespace' => $input->getArgument('namespace')
+            'entityName' => $input->getOption('entityName'),
+            'namespace' => $input->getOption('namespace')
         ];
 
         $appInput = new ArrayInput($arguments);
