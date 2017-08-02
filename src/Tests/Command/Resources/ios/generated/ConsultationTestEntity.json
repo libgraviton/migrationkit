@@ -1,0 +1,91 @@
+{
+    "id": "ConsultationTestEntity",
+    "target": {
+        "fields": [
+            {
+                "name": "creationDate",
+                "title": "",
+                "description": "",
+                "type": "datetime"
+            },
+            {
+                "name": "fieldToBeAddedStuff",
+                "title": "This is an overridden title",
+                "required": true,
+                "description": "This is an overridden description",
+                "type": "datetime"
+            },
+            {
+                "name": "id",
+                "title": "ID",
+                "required": true,
+                "description": "The unique identifier of this object",
+                "type": "string"
+            },
+            {
+                "name": "owner.ref",
+                "title": "",
+                "description": "Owner",
+                "type": "extref",
+                "exposeAs": "$ref",
+                "collection": [
+                    "*"
+                ]
+            },
+            {
+                "name": "persons",
+                "title": "",
+                "description": "",
+                "type": "class:GravitonDyn\\ConsultationPersonBundle\\Document\\ConsultationPerson[]"
+            },
+            {
+                "name": "someObject",
+                "title": "",
+                "description": "",
+                "type": "object"
+            },
+            {
+                "name": "subclass",
+                "title": "",
+                "description": "Other entity",
+                "type": "class:GravitonDyn\\ConsultationOtherEntityBundle\\Document\\ConsultationOtherEntity"
+            },
+            {
+                "name": "subclassRepeated",
+                "title": "",
+                "description": "Other entity",
+                "type": "class:GravitonDyn\\ConsultationOtherEntityBundle\\Document\\ConsultationOtherEntity"
+            },
+            {
+                "name": "anAddedField",
+                "type": "varchar",
+                "title": "Added field",
+                "description": "Added field"
+            }
+        ],
+        "relations": [
+            {
+                "localProperty": "persons",
+                "type": "embed"
+            },
+            {
+                "localProperty": "subclass",
+                "type": "embed"
+            },
+            {
+                "localProperty": "subclassRepeated",
+                "type": "embed"
+            }
+        ],
+        "indexes": [
+            "creationDate"
+        ]
+    },
+    "title": "This is a test entity",
+    "description": "A description for the test entity",
+    "service": {
+        "readOnly": false,
+        "routerBase": "/test/entity/",
+        "versioning": false
+    }
+}

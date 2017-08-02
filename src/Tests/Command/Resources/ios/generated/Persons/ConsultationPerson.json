@@ -1,0 +1,19 @@
+{
+    "id": "ConsultationPerson",
+    "target": {
+        "fields": [
+            {
+                "name": "dateOfBirth",
+                "title": "",
+                "description": "",
+                "type": "datetime"
+            },
+            {
+                "name": "name",
+                "title": "",
+                "description": "",
+                "type": "string"
+            }
+        ]
+    }
+}

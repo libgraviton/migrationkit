@@ -1,0 +1,5430 @@
+{
+  "type": "EVJConsultationDossier",
+  "polymorphic": false,
+  "properties": [
+    {
+      "name": "id",
+      "comment": "The unique identifier of this object",
+      "required": true,
+      "content": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "displayName",
+      "comment": "",
+      "required": false,
+      "content": {
+        "type": "string"
+      }
+    },
+    {
+      "name": "creationDate",
+      "comment": "",
+      "required": false,
+      "content": {
+        "type": "datetime"
+      }
+    },
+    {
+      "name": "ownerCustomer",
+      "comment": "Contains the owner ref of the consultation (either a customer or a group).",
+      "required": false,
+      "content": {
+        "type": "extref"
+      }
+    },
+    {
+      "name": "ownerConsultant",
+      "comment": "",
+      "required": true,
+      "content": {
+        "type": "extref"
+      }
+    },
+    {
+      "name": "customer",
+      "comment": "Contains the single owner of the consultation. If the consultations belongs to a customer group the owners are in customers. Either this or customers must be set.",
+      "required": false,
+      "content": {
+        "type": "EVJCustomer",
+        "polymorphic": false,
+        "properties": [
+          {
+            "name": "title",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "EVJTitle",
+              "polymorphic": false,
+              "properties": [
+                {
+                  "name": "id",
+                  "comment": "",
+                  "required": true,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "recordOrigin",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "addition",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "group",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "number",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "text",
+                  "comment": "",
+                  "required": true,
+                  "content": {
+                    "type": "localized"
+                  }
+                },
+                {
+                  "name": "textShort",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "localized"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "salutation",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "EVJSalutation",
+              "polymorphic": false,
+              "properties": [
+                {
+                  "name": "id",
+                  "comment": "",
+                  "required": true,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "recordOrigin",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "addition",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "group",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "number",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "text",
+                  "comment": "",
+                  "required": true,
+                  "content": {
+                    "type": "localized"
+                  }
+                },
+                {
+                  "name": "textShort",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "localized"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "firstName",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lastName",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sex",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "dictionary<string, any>",
+              "content": { "type": "any" }
+            }
+          },
+          {
+            "name": "maritalStatus",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "dictionary<string, any>",
+              "content": { "type": "any" }
+            }
+          },
+          {
+            "name": "maritalStatusDate",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "datetime"
+            }
+          },
+          {
+            "name": "birthDate",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "datetime"
+            }
+          },
+          {
+            "name": "birthPlace",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "countryOfBirth",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "EVJNationality",
+              "polymorphic": false,
+              "properties": [
+                {
+                  "name": "id",
+                  "comment": "",
+                  "required": true,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "recordOrigin",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "addition",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "group",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "number",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "text",
+                  "comment": "",
+                  "required": true,
+                  "content": {
+                    "type": "localized"
+                  }
+                },
+                {
+                  "name": "textShort",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "localized"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "nationality",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "EVJNationality",
+              "polymorphic": false,
+              "properties": [
+                {
+                  "name": "id",
+                  "comment": "",
+                  "required": true,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "recordOrigin",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "addition",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "group",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "number",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "text",
+                  "comment": "",
+                  "required": true,
+                  "content": {
+                    "type": "localized"
+                  }
+                },
+                {
+                  "name": "textShort",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "localized"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "nationality2nd",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "EVJNationality",
+              "polymorphic": false,
+              "properties": [
+                {
+                  "name": "id",
+                  "comment": "",
+                  "required": true,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "recordOrigin",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "addition",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "group",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "number",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "text",
+                  "comment": "",
+                  "required": true,
+                  "content": {
+                    "type": "localized"
+                  }
+                },
+                {
+                  "name": "textShort",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "localized"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "nativePlace",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "legalAddress",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "EVJAddress",
+              "polymorphic": false,
+              "properties": [
+                {
+                  "name": "street",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "zipCode",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "city",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "country",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "dictionary<string, any>",
+                    "content": { "type": "any" }
+                  }
+                },
+                {
+                  "name": "placemark",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "CLPlacemark"
+                  }
+                },
+                {
+                  "name": "unusedServerData",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "dictionary<string, any>",
+                    "content": { "type": "any" }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "contact",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "EVJContactInfo",
+              "polymorphic": false,
+              "properties": [
+                {
+                  "name": "contacts",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "array<EVJContact>",
+                    "content": {
+                      "type": "EVJContact",
+                      "polymorphic": false,
+                      "properties": [
+                        {
+                          "name": "id",
+                          "comment": "",
+                          "required": false,
+                          "content": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "name": "uri",
+                          "comment": "",
+                          "required": false,
+                          "content": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "name": "type",
+                          "comment": "",
+                          "required": false,
+                          "content": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "name": "value",
+                          "comment": "",
+                          "required": false,
+                          "content": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "name": "protocol",
+                          "comment": "",
+                          "required": false,
+                          "content": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "name": "comment",
+                          "comment": "",
+                          "required": false,
+                          "content": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "name": "preferred",
+                          "comment": "",
+                          "required": false,
+                          "content": {
+                            "type": "bool"
+                          }
+                        },
+                        {
+                          "name": "variation",
+                          "comment": "",
+                          "required": false,
+                          "content": {
+                            "type": "EVJContactVariation",
+                            "polymorphic": false,
+                            "properties": [
+                              {
+                                "name": "id",
+                                "comment": "",
+                                "required": true,
+                                "content": {
+                                  "type": "string"
+                                }
+                              },
+                              {
+                                "name": "recordOrigin",
+                                "comment": "",
+                                "required": false,
+                                "content": {
+                                  "type": "string"
+                                }
+                              },
+                              {
+                                "name": "addition",
+                                "comment": "",
+                                "required": false,
+                                "content": {
+                                  "type": "string"
+                                }
+                              },
+                              {
+                                "name": "group",
+                                "comment": "",
+                                "required": false,
+                                "content": {
+                                  "type": "string"
+                                }
+                              },
+                              {
+                                "name": "number",
+                                "comment": "",
+                                "required": false,
+                                "content": {
+                                  "type": "string"
+                                }
+                              },
+                              {
+                                "name": "text",
+                                "comment": "",
+                                "required": true,
+                                "content": {
+                                  "type": "localized"
+                                }
+                              },
+                              {
+                                "name": "textShort",
+                                "comment": "",
+                                "required": false,
+                                "content": {
+                                  "type": "localized"
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "isResidential",
+            "comment": "",
+            "required": true,
+            "content": {
+              "type": "bool"
+            }
+          },
+          {
+            "name": "profession",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "EVJProfession",
+              "polymorphic": false,
+              "properties": [
+                {
+                  "name": "id",
+                  "comment": "",
+                  "required": true,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "recordOrigin",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "addition",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "group",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "number",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "text",
+                  "comment": "",
+                  "required": true,
+                  "content": {
+                    "type": "localized"
+                  }
+                },
+                {
+                  "name": "textShort",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "localized"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "employmentStatus",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "EVJEmploymentStatus",
+              "polymorphic": false,
+              "properties": [
+                {
+                  "name": "id",
+                  "comment": "",
+                  "required": true,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "recordOrigin",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "addition",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "group",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "number",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "text",
+                  "comment": "",
+                  "required": true,
+                  "content": {
+                    "type": "localized"
+                  }
+                },
+                {
+                  "name": "textShort",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "localized"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "hasBvg",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "bool"
+            }
+          },
+          {
+            "name": "education",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "euTaxLiability",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "EVJEntity",
+              "polymorphic": false,
+              "properties": [
+                {
+                  "name": "id",
+                  "comment": "",
+                  "required": true,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "recordOrigin",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "addition",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "group",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "number",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "text",
+                  "comment": "",
+                  "required": true,
+                  "content": {
+                    "type": "localized"
+                  }
+                },
+                {
+                  "name": "textShort",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "localized"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "rating",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "EVJEntity",
+              "polymorphic": false,
+              "properties": [
+                {
+                  "name": "id",
+                  "comment": "",
+                  "required": true,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "recordOrigin",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "addition",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "group",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "number",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "text",
+                  "comment": "",
+                  "required": true,
+                  "content": {
+                    "type": "localized"
+                  }
+                },
+                {
+                  "name": "textShort",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "localized"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "language",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "EVJLanguage",
+              "polymorphic": false,
+              "properties": [
+                {
+                  "name": "id",
+                  "comment": "",
+                  "required": true,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "recordOrigin",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "addition",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "group",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "number",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "text",
+                  "comment": "",
+                  "required": true,
+                  "content": {
+                    "type": "localized"
+                  }
+                },
+                {
+                  "name": "textShort",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "localized"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "consultant",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "dictionary<string, any>",
+              "content": { "type": "any" }
+            }
+          },
+          {
+            "name": "customerType",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "customerSubType",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "recordOrigin",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "customerNumber",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "customerNumberAlternate",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "kd_lnr",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "createDate",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "datetime"
+            }
+          },
+          {
+            "name": "openedDate",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "datetime"
+            }
+          },
+          {
+            "name": "fullDesignation",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "designation",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "noga",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "EVJNOGA",
+              "polymorphic": false,
+              "properties": [
+                {
+                  "name": "id",
+                  "comment": "",
+                  "required": true,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "recordOrigin",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "addition",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "group",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "number",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "text",
+                  "comment": "",
+                  "required": true,
+                  "content": {
+                    "type": "localized"
+                  }
+                },
+                {
+                  "name": "textShort",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "localized"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "mainType",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "EVJEntity",
+              "polymorphic": false,
+              "properties": [
+                {
+                  "name": "id",
+                  "comment": "",
+                  "required": true,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "recordOrigin",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "addition",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "group",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "number",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "text",
+                  "comment": "",
+                  "required": true,
+                  "content": {
+                    "type": "localized"
+                  }
+                },
+                {
+                  "name": "textShort",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "localized"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "customerConnectionType",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "EVJEntity",
+              "polymorphic": false,
+              "properties": [
+                {
+                  "name": "id",
+                  "comment": "",
+                  "required": true,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "recordOrigin",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "addition",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "group",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "number",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "text",
+                  "comment": "",
+                  "required": true,
+                  "content": {
+                    "type": "localized"
+                  }
+                },
+                {
+                  "name": "textShort",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "localized"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "unusedServerData",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "dictionary<string, any>",
+              "content": { "type": "any" }
+            }
+          },
+          {
+            "name": "partner",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "EVJCustomer",
+              "recursive": true
+            }
+          },
+          {
+            "name": "titlePartner",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "EVJTitle",
+              "polymorphic": false,
+              "properties": [
+                {
+                  "name": "id",
+                  "comment": "",
+                  "required": true,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "recordOrigin",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "addition",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "group",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "number",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "text",
+                  "comment": "",
+                  "required": true,
+                  "content": {
+                    "type": "localized"
+                  }
+                },
+                {
+                  "name": "textShort",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "localized"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "salutationPartner",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "EVJSalutation",
+              "polymorphic": false,
+              "properties": [
+                {
+                  "name": "id",
+                  "comment": "",
+                  "required": true,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "recordOrigin",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "addition",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "group",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "number",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "text",
+                  "comment": "",
+                  "required": true,
+                  "content": {
+                    "type": "localized"
+                  }
+                },
+                {
+                  "name": "textShort",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "localized"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "firstNamePartner",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lastNamePartner",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "sexPartner",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "dictionary<string, any>",
+              "content": { "type": "any" }
+            }
+          },
+          {
+            "name": "maritalStatusPartner",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "dictionary<string, any>",
+              "content": { "type": "any" }
+            }
+          },
+          {
+            "name": "maritalStatusPartnerDate",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "datetime"
+            }
+          },
+          {
+            "name": "birthDatePartner",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "datetime"
+            }
+          },
+          {
+            "name": "birthPlacePartner",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "countryOfBirthPartner",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "EVJNationality",
+              "polymorphic": false,
+              "properties": [
+                {
+                  "name": "id",
+                  "comment": "",
+                  "required": true,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "recordOrigin",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "addition",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "group",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "number",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "text",
+                  "comment": "",
+                  "required": true,
+                  "content": {
+                    "type": "localized"
+                  }
+                },
+                {
+                  "name": "textShort",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "localized"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "nationalityPartner",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "EVJNationality",
+              "polymorphic": false,
+              "properties": [
+                {
+                  "name": "id",
+                  "comment": "",
+                  "required": true,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "recordOrigin",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "addition",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "group",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "number",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "text",
+                  "comment": "",
+                  "required": true,
+                  "content": {
+                    "type": "localized"
+                  }
+                },
+                {
+                  "name": "textShort",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "localized"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "nationalityPartner2nd",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "EVJNationality",
+              "polymorphic": false,
+              "properties": [
+                {
+                  "name": "id",
+                  "comment": "",
+                  "required": true,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "recordOrigin",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "addition",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "group",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "number",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "name": "text",
+                  "comment": "",
+                  "required": true,
+                  "content": {
+                    "type": "localized"
+                  }
+                },
+                {
+                  "name": "textShort",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "localized"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "nativePlacePartner",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "domicil",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "children",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "array<EVJChild>",
+              "content": {
+                "type": "EVJChild",
+                "polymorphic": false,
+                "properties": [
+                  {
+                    "name": "fullName",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "dateOfBirth",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "datetime"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "name": "provisionExtraInfo",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "EVJProvisionAdditionalCustomerData",
+              "polymorphic": false,
+              "properties": [
+                {
+                  "name": "maritalStatusSince",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "datetime"
+                  }
+                },
+                {
+                  "name": "amountOfChildren",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "number"
+                  }
+                },
+                {
+                  "name": "amountOfChildrenEligibleForPension",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "number"
+                  }
+                },
+                {
+                  "name": "annualGrossIncome",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "decimal"
+                  }
+                },
+                {
+                  "name": "selfEmployed",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "bool"
+                  }
+                },
+                {
+                  "name": "ahvCalculationMode",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "number"
+                  }
+                },
+                {
+                  "name": "disabilityPension",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "decimal"
+                  }
+                },
+                {
+                  "name": "disabilityChildrenPension",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "decimal"
+                  }
+                },
+                {
+                  "name": "ahvSpousePension",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "decimal"
+                  }
+                },
+                {
+                  "name": "ahvOrphanPension",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "decimal"
+                  }
+                },
+                {
+                  "name": "bvgCalculationMode",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "number"
+                  }
+                },
+                {
+                  "name": "bvgDisabilityPension",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "decimal"
+                  }
+                },
+                {
+                  "name": "bvgDisabilityChildrenPension",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "decimal"
+                  }
+                },
+                {
+                  "name": "bvgSpousePension",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "decimal"
+                  }
+                },
+                {
+                  "name": "bvgOrphanPension",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "decimal"
+                  }
+                },
+                {
+                  "name": "uvgAddOn",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "decimal"
+                  }
+                },
+                {
+                  "name": "uvgDisabilityPension",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "decimal"
+                  }
+                },
+                {
+                  "name": "uvgSpousePension",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "decimal"
+                  }
+                },
+                {
+                  "name": "uvgOrphanPension",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "decimal"
+                  }
+                },
+                {
+                  "name": "additionalBenefitItems",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "array<EVJProvisionAdditionalBenefit>",
+                    "content": {
+                      "type": "EVJProvisionAdditionalBenefit",
+                      "polymorphic": false,
+                      "properties": [
+                        {
+                          "name": "type",
+                          "comment": "",
+                          "required": true,
+                          "content": {
+                            "type": "EVJProvisionThirdPillarType",
+                            "polymorphic": false,
+                            "properties": [
+                              {
+                                "name": "key",
+                                "comment": "",
+                                "required": false,
+                                "content": {
+                                  "type": "string"
+                                }
+                              },
+                              {
+                                "name": "titles",
+                                "comment": "",
+                                "required": false,
+                                "content": {
+                                  "type": "localized"
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "name": "disease",
+                          "comment": "",
+                          "required": false,
+                          "content": {
+                            "type": "bool"
+                          }
+                        },
+                        {
+                          "name": "accident",
+                          "comment": "",
+                          "required": false,
+                          "content": {
+                            "type": "bool"
+                          }
+                        },
+                        {
+                          "name": "name",
+                          "comment": "",
+                          "required": false,
+                          "content": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "name": "amount",
+                          "comment": "",
+                          "required": true,
+                          "content": {
+                            "type": "decimal"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "name": "additionalCapitalItems",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "array<EVJProvisionAdditionalCapital>",
+                    "content": {
+                      "type": "EVJProvisionAdditionalCapital",
+                      "polymorphic": false,
+                      "properties": [
+                        {
+                          "name": "type",
+                          "comment": "",
+                          "required": true,
+                          "content": {
+                            "type": "EVJProvisionThirdPillarType",
+                            "polymorphic": false,
+                            "properties": [
+                              {
+                                "name": "key",
+                                "comment": "",
+                                "required": false,
+                                "content": {
+                                  "type": "string"
+                                }
+                              },
+                              {
+                                "name": "titles",
+                                "comment": "",
+                                "required": false,
+                                "content": {
+                                  "type": "localized"
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "name": "disability",
+                          "comment": "",
+                          "required": false,
+                          "content": {
+                            "type": "bool"
+                          }
+                        },
+                        {
+                          "name": "death",
+                          "comment": "",
+                          "required": false,
+                          "content": {
+                            "type": "bool"
+                          }
+                        },
+                        {
+                          "name": "name",
+                          "comment": "",
+                          "required": false,
+                          "content": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "name": "amount",
+                          "comment": "",
+                          "required": true,
+                          "content": {
+                            "type": "decimal"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "retirementExtraInfo",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "EVJRetirementAdditionalCustomerData",
+              "polymorphic": false,
+              "properties": [
+                {
+                  "name": "netIncome",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "decimal"
+                  }
+                },
+                {
+                  "name": "additionalIncome",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "EVJAdditionalIncome",
+                    "polymorphic": false,
+                    "properties": [
+                      {
+                        "name": "amount",
+                        "comment": "",
+                        "required": false,
+                        "content": {
+                          "type": "decimal"
+                        }
+                      },
+                      {
+                        "name": "from",
+                        "comment": "",
+                        "required": false,
+                        "content": {
+                          "type": "datetime"
+                        }
+                      },
+                      {
+                        "name": "to",
+                        "comment": "",
+                        "required": false,
+                        "content": {
+                          "type": "datetime"
+                        }
+                      },
+                      {
+                        "name": "infinite",
+                        "comment": "",
+                        "required": false,
+                        "content": {
+                          "type": "bool"
+                        }
+                      },
+                      {
+                        "name": "untilRegularRetirement",
+                        "comment": "",
+                        "required": false,
+                        "content": {
+                          "type": "bool"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "annualPillarOnePension",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "decimal"
+                  }
+                },
+                {
+                  "name": "annualPillarOneAfterSplittingPension",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "decimal"
+                  }
+                },
+                {
+                  "name": "annualPillarTwoPensionPerAge",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "dictionary<string, decimal>",
+                    "content": {
+                      "type": "decimal"
+                    }
+                  }
+                },
+                {
+                  "name": "annualPillarTwoCapitalWithdrawalsPerAge",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "dictionary<string, decimal>",
+                    "content": {
+                      "type": "decimal"
+                    }
+                  }
+                },
+                {
+                  "name": "additionalCapitalItems",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "array<EVJRetirementAdditionalCapital>",
+                    "content": {
+                      "type": "EVJRetirementAdditionalCapital",
+                      "polymorphic": false,
+                      "properties": [
+                        {
+                          "name": "readonly",
+                          "comment": "",
+                          "required": false,
+                          "content": {
+                            "type": "bool"
+                          }
+                        },
+                        {
+                          "name": "category",
+                          "comment": "",
+                          "required": false,
+                          "content": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "name": "date",
+                          "comment": "",
+                          "required": false,
+                          "content": {
+                            "type": "datetime"
+                          }
+                        },
+                        {
+                          "name": "bankName",
+                          "comment": "",
+                          "required": false,
+                          "content": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "name": "amount",
+                          "comment": "",
+                          "required": false,
+                          "content": {
+                            "type": "decimal"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "provisionExtraInfoPartner",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "EVJProvisionAdditionalCustomerData",
+              "polymorphic": false,
+              "properties": [
+                {
+                  "name": "maritalStatusSince",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "datetime"
+                  }
+                },
+                {
+                  "name": "amountOfChildren",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "number"
+                  }
+                },
+                {
+                  "name": "amountOfChildrenEligibleForPension",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "number"
+                  }
+                },
+                {
+                  "name": "annualGrossIncome",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "decimal"
+                  }
+                },
+                {
+                  "name": "selfEmployed",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "bool"
+                  }
+                },
+                {
+                  "name": "ahvCalculationMode",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "number"
+                  }
+                },
+                {
+                  "name": "disabilityPension",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "decimal"
+                  }
+                },
+                {
+                  "name": "disabilityChildrenPension",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "decimal"
+                  }
+                },
+                {
+                  "name": "ahvSpousePension",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "decimal"
+                  }
+                },
+                {
+                  "name": "ahvOrphanPension",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "decimal"
+                  }
+                },
+                {
+                  "name": "bvgCalculationMode",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "number"
+                  }
+                },
+                {
+                  "name": "bvgDisabilityPension",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "decimal"
+                  }
+                },
+                {
+                  "name": "bvgDisabilityChildrenPension",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "decimal"
+                  }
+                },
+                {
+                  "name": "bvgSpousePension",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "decimal"
+                  }
+                },
+                {
+                  "name": "bvgOrphanPension",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "decimal"
+                  }
+                },
+                {
+                  "name": "uvgAddOn",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "decimal"
+                  }
+                },
+                {
+                  "name": "uvgDisabilityPension",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "decimal"
+                  }
+                },
+                {
+                  "name": "uvgSpousePension",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "decimal"
+                  }
+                },
+                {
+                  "name": "uvgOrphanPension",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "decimal"
+                  }
+                },
+                {
+                  "name": "additionalBenefitItems",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "array<EVJProvisionAdditionalBenefit>",
+                    "content": {
+                      "type": "EVJProvisionAdditionalBenefit",
+                      "polymorphic": false,
+                      "properties": [
+                        {
+                          "name": "type",
+                          "comment": "",
+                          "required": true,
+                          "content": {
+                            "type": "EVJProvisionThirdPillarType",
+                            "polymorphic": false,
+                            "properties": [
+                              {
+                                "name": "key",
+                                "comment": "",
+                                "required": false,
+                                "content": {
+                                  "type": "string"
+                                }
+                              },
+                              {
+                                "name": "titles",
+                                "comment": "",
+                                "required": false,
+                                "content": {
+                                  "type": "localized"
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "name": "disease",
+                          "comment": "",
+                          "required": false,
+                          "content": {
+                            "type": "bool"
+                          }
+                        },
+                        {
+                          "name": "accident",
+                          "comment": "",
+                          "required": false,
+                          "content": {
+                            "type": "bool"
+                          }
+                        },
+                        {
+                          "name": "name",
+                          "comment": "",
+                          "required": false,
+                          "content": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "name": "amount",
+                          "comment": "",
+                          "required": true,
+                          "content": {
+                            "type": "decimal"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                {
+                  "name": "additionalCapitalItems",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "array<EVJProvisionAdditionalCapital>",
+                    "content": {
+                      "type": "EVJProvisionAdditionalCapital",
+                      "polymorphic": false,
+                      "properties": [
+                        {
+                          "name": "type",
+                          "comment": "",
+                          "required": true,
+                          "content": {
+                            "type": "EVJProvisionThirdPillarType",
+                            "polymorphic": false,
+                            "properties": [
+                              {
+                                "name": "key",
+                                "comment": "",
+                                "required": false,
+                                "content": {
+                                  "type": "string"
+                                }
+                              },
+                              {
+                                "name": "titles",
+                                "comment": "",
+                                "required": false,
+                                "content": {
+                                  "type": "localized"
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "name": "disability",
+                          "comment": "",
+                          "required": false,
+                          "content": {
+                            "type": "bool"
+                          }
+                        },
+                        {
+                          "name": "death",
+                          "comment": "",
+                          "required": false,
+                          "content": {
+                            "type": "bool"
+                          }
+                        },
+                        {
+                          "name": "name",
+                          "comment": "",
+                          "required": false,
+                          "content": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "name": "amount",
+                          "comment": "",
+                          "required": true,
+                          "content": {
+                            "type": "decimal"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "name": "retirementExtraInfoPartner",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "EVJRetirementAdditionalCustomerData",
+              "polymorphic": false,
+              "properties": [
+                {
+                  "name": "netIncome",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "decimal"
+                  }
+                },
+                {
+                  "name": "additionalIncome",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "EVJAdditionalIncome",
+                    "polymorphic": false,
+                    "properties": [
+                      {
+                        "name": "amount",
+                        "comment": "",
+                        "required": false,
+                        "content": {
+                          "type": "decimal"
+                        }
+                      },
+                      {
+                        "name": "from",
+                        "comment": "",
+                        "required": false,
+                        "content": {
+                          "type": "datetime"
+                        }
+                      },
+                      {
+                        "name": "to",
+                        "comment": "",
+                        "required": false,
+                        "content": {
+                          "type": "datetime"
+                        }
+                      },
+                      {
+                        "name": "infinite",
+                        "comment": "",
+                        "required": false,
+                        "content": {
+                          "type": "bool"
+                        }
+                      },
+                      {
+                        "name": "untilRegularRetirement",
+                        "comment": "",
+                        "required": false,
+                        "content": {
+                          "type": "bool"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "name": "annualPillarOnePension",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "decimal"
+                  }
+                },
+                {
+                  "name": "annualPillarOneAfterSplittingPension",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "decimal"
+                  }
+                },
+                {
+                  "name": "annualPillarTwoPensionPerAge",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "dictionary<string, decimal>",
+                    "content": {
+                      "type": "decimal"
+                    }
+                  }
+                },
+                {
+                  "name": "annualPillarTwoCapitalWithdrawalsPerAge",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "dictionary<string, decimal>",
+                    "content": {
+                      "type": "decimal"
+                    }
+                  }
+                },
+                {
+                  "name": "additionalCapitalItems",
+                  "comment": "",
+                  "required": false,
+                  "content": {
+                    "type": "array<EVJRetirementAdditionalCapital>",
+                    "content": {
+                      "type": "EVJRetirementAdditionalCapital",
+                      "polymorphic": false,
+                      "properties": [
+                        {
+                          "name": "readonly",
+                          "comment": "",
+                          "required": false,
+                          "content": {
+                            "type": "bool"
+                          }
+                        },
+                        {
+                          "name": "category",
+                          "comment": "",
+                          "required": false,
+                          "content": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "name": "date",
+                          "comment": "",
+                          "required": false,
+                          "content": {
+                            "type": "datetime"
+                          }
+                        },
+                        {
+                          "name": "bankName",
+                          "comment": "",
+                          "required": false,
+                          "content": {
+                            "type": "string"
+                          }
+                        },
+                        {
+                          "name": "amount",
+                          "comment": "",
+                          "required": false,
+                          "content": {
+                            "type": "decimal"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "customers",
+      "comment": "Contains all the customers if this is a consultation for a group. If this property is used (non empty) the customer property must be nil. And the customers property must be used.",
+      "required": false,
+      "content": {
+        "type": "array<EVJCustomer>",
+        "content": {
+          "type": "EVJCustomer",
+          "polymorphic": false,
+          "properties": [
+            {
+              "name": "title",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "EVJTitle",
+                "polymorphic": false,
+                "properties": [
+                  {
+                    "name": "id",
+                    "comment": "",
+                    "required": true,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "recordOrigin",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "addition",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "group",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "number",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "text",
+                    "comment": "",
+                    "required": true,
+                    "content": {
+                      "type": "localized"
+                    }
+                  },
+                  {
+                    "name": "textShort",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "localized"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "salutation",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "EVJSalutation",
+                "polymorphic": false,
+                "properties": [
+                  {
+                    "name": "id",
+                    "comment": "",
+                    "required": true,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "recordOrigin",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "addition",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "group",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "number",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "text",
+                    "comment": "",
+                    "required": true,
+                    "content": {
+                      "type": "localized"
+                    }
+                  },
+                  {
+                    "name": "textShort",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "localized"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "firstName",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "lastName",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "sex",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "dictionary<string, any>",
+                "content": { "type": "any" }
+              }
+            },
+            {
+              "name": "maritalStatus",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "dictionary<string, any>",
+                "content": { "type": "any" }
+              }
+            },
+            {
+              "name": "maritalStatusDate",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "datetime"
+              }
+            },
+            {
+              "name": "birthDate",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "datetime"
+              }
+            },
+            {
+              "name": "birthPlace",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "countryOfBirth",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "EVJNationality",
+                "polymorphic": false,
+                "properties": [
+                  {
+                    "name": "id",
+                    "comment": "",
+                    "required": true,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "recordOrigin",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "addition",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "group",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "number",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "text",
+                    "comment": "",
+                    "required": true,
+                    "content": {
+                      "type": "localized"
+                    }
+                  },
+                  {
+                    "name": "textShort",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "localized"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "nationality",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "EVJNationality",
+                "polymorphic": false,
+                "properties": [
+                  {
+                    "name": "id",
+                    "comment": "",
+                    "required": true,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "recordOrigin",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "addition",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "group",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "number",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "text",
+                    "comment": "",
+                    "required": true,
+                    "content": {
+                      "type": "localized"
+                    }
+                  },
+                  {
+                    "name": "textShort",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "localized"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "nationality2nd",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "EVJNationality",
+                "polymorphic": false,
+                "properties": [
+                  {
+                    "name": "id",
+                    "comment": "",
+                    "required": true,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "recordOrigin",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "addition",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "group",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "number",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "text",
+                    "comment": "",
+                    "required": true,
+                    "content": {
+                      "type": "localized"
+                    }
+                  },
+                  {
+                    "name": "textShort",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "localized"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "nativePlace",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "legalAddress",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "EVJAddress",
+                "polymorphic": false,
+                "properties": [
+                  {
+                    "name": "street",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "zipCode",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "city",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "country",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "dictionary<string, any>",
+                      "content": { "type": "any" }
+                    }
+                  },
+                  {
+                    "name": "placemark",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "CLPlacemark"
+                    }
+                  },
+                  {
+                    "name": "unusedServerData",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "dictionary<string, any>",
+                      "content": { "type": "any" }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "contact",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "EVJContactInfo",
+                "polymorphic": false,
+                "properties": [
+                  {
+                    "name": "contacts",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "array<EVJContact>",
+                      "content": {
+                        "type": "EVJContact",
+                        "polymorphic": false,
+                        "properties": [
+                          {
+                            "name": "id",
+                            "comment": "",
+                            "required": false,
+                            "content": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "uri",
+                            "comment": "",
+                            "required": false,
+                            "content": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "type",
+                            "comment": "",
+                            "required": false,
+                            "content": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "value",
+                            "comment": "",
+                            "required": false,
+                            "content": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "protocol",
+                            "comment": "",
+                            "required": false,
+                            "content": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "comment",
+                            "comment": "",
+                            "required": false,
+                            "content": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "preferred",
+                            "comment": "",
+                            "required": false,
+                            "content": {
+                              "type": "bool"
+                            }
+                          },
+                          {
+                            "name": "variation",
+                            "comment": "",
+                            "required": false,
+                            "content": {
+                              "type": "EVJContactVariation",
+                              "polymorphic": false,
+                              "properties": [
+                                {
+                                  "name": "id",
+                                  "comment": "",
+                                  "required": true,
+                                  "content": {
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "recordOrigin",
+                                  "comment": "",
+                                  "required": false,
+                                  "content": {
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "addition",
+                                  "comment": "",
+                                  "required": false,
+                                  "content": {
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "group",
+                                  "comment": "",
+                                  "required": false,
+                                  "content": {
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "number",
+                                  "comment": "",
+                                  "required": false,
+                                  "content": {
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "text",
+                                  "comment": "",
+                                  "required": true,
+                                  "content": {
+                                    "type": "localized"
+                                  }
+                                },
+                                {
+                                  "name": "textShort",
+                                  "comment": "",
+                                  "required": false,
+                                  "content": {
+                                    "type": "localized"
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "isResidential",
+              "comment": "",
+              "required": true,
+              "content": {
+                "type": "bool"
+              }
+            },
+            {
+              "name": "profession",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "EVJProfession",
+                "polymorphic": false,
+                "properties": [
+                  {
+                    "name": "id",
+                    "comment": "",
+                    "required": true,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "recordOrigin",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "addition",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "group",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "number",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "text",
+                    "comment": "",
+                    "required": true,
+                    "content": {
+                      "type": "localized"
+                    }
+                  },
+                  {
+                    "name": "textShort",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "localized"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "employmentStatus",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "EVJEmploymentStatus",
+                "polymorphic": false,
+                "properties": [
+                  {
+                    "name": "id",
+                    "comment": "",
+                    "required": true,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "recordOrigin",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "addition",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "group",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "number",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "text",
+                    "comment": "",
+                    "required": true,
+                    "content": {
+                      "type": "localized"
+                    }
+                  },
+                  {
+                    "name": "textShort",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "localized"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "hasBvg",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "bool"
+              }
+            },
+            {
+              "name": "education",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "euTaxLiability",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "EVJEntity",
+                "polymorphic": false,
+                "properties": [
+                  {
+                    "name": "id",
+                    "comment": "",
+                    "required": true,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "recordOrigin",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "addition",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "group",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "number",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "text",
+                    "comment": "",
+                    "required": true,
+                    "content": {
+                      "type": "localized"
+                    }
+                  },
+                  {
+                    "name": "textShort",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "localized"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "rating",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "EVJEntity",
+                "polymorphic": false,
+                "properties": [
+                  {
+                    "name": "id",
+                    "comment": "",
+                    "required": true,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "recordOrigin",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "addition",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "group",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "number",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "text",
+                    "comment": "",
+                    "required": true,
+                    "content": {
+                      "type": "localized"
+                    }
+                  },
+                  {
+                    "name": "textShort",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "localized"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "language",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "EVJLanguage",
+                "polymorphic": false,
+                "properties": [
+                  {
+                    "name": "id",
+                    "comment": "",
+                    "required": true,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "recordOrigin",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "addition",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "group",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "number",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "text",
+                    "comment": "",
+                    "required": true,
+                    "content": {
+                      "type": "localized"
+                    }
+                  },
+                  {
+                    "name": "textShort",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "localized"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "consultant",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "dictionary<string, any>",
+                "content": { "type": "any" }
+              }
+            },
+            {
+              "name": "customerType",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "customerSubType",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "number"
+              }
+            },
+            {
+              "name": "recordOrigin",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "customerNumber",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "customerNumberAlternate",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "kd_lnr",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "number"
+              }
+            },
+            {
+              "name": "createDate",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "datetime"
+              }
+            },
+            {
+              "name": "openedDate",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "datetime"
+              }
+            },
+            {
+              "name": "fullDesignation",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "designation",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "noga",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "EVJNOGA",
+                "polymorphic": false,
+                "properties": [
+                  {
+                    "name": "id",
+                    "comment": "",
+                    "required": true,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "recordOrigin",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "addition",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "group",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "number",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "text",
+                    "comment": "",
+                    "required": true,
+                    "content": {
+                      "type": "localized"
+                    }
+                  },
+                  {
+                    "name": "textShort",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "localized"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "mainType",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "EVJEntity",
+                "polymorphic": false,
+                "properties": [
+                  {
+                    "name": "id",
+                    "comment": "",
+                    "required": true,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "recordOrigin",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "addition",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "group",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "number",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "text",
+                    "comment": "",
+                    "required": true,
+                    "content": {
+                      "type": "localized"
+                    }
+                  },
+                  {
+                    "name": "textShort",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "localized"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "customerConnectionType",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "EVJEntity",
+                "polymorphic": false,
+                "properties": [
+                  {
+                    "name": "id",
+                    "comment": "",
+                    "required": true,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "recordOrigin",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "addition",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "group",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "number",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "text",
+                    "comment": "",
+                    "required": true,
+                    "content": {
+                      "type": "localized"
+                    }
+                  },
+                  {
+                    "name": "textShort",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "localized"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "unusedServerData",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "dictionary<string, any>",
+                "content": { "type": "any" }
+              }
+            },
+            {
+              "name": "partner",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "EVJCustomer",
+                "recursive": true
+              }
+            },
+            {
+              "name": "titlePartner",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "EVJTitle",
+                "polymorphic": false,
+                "properties": [
+                  {
+                    "name": "id",
+                    "comment": "",
+                    "required": true,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "recordOrigin",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "addition",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "group",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "number",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "text",
+                    "comment": "",
+                    "required": true,
+                    "content": {
+                      "type": "localized"
+                    }
+                  },
+                  {
+                    "name": "textShort",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "localized"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "salutationPartner",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "EVJSalutation",
+                "polymorphic": false,
+                "properties": [
+                  {
+                    "name": "id",
+                    "comment": "",
+                    "required": true,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "recordOrigin",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "addition",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "group",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "number",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "text",
+                    "comment": "",
+                    "required": true,
+                    "content": {
+                      "type": "localized"
+                    }
+                  },
+                  {
+                    "name": "textShort",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "localized"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "firstNamePartner",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "lastNamePartner",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "sexPartner",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "dictionary<string, any>",
+                "content": { "type": "any" }
+              }
+            },
+            {
+              "name": "maritalStatusPartner",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "dictionary<string, any>",
+                "content": { "type": "any" }
+              }
+            },
+            {
+              "name": "maritalStatusPartnerDate",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "datetime"
+              }
+            },
+            {
+              "name": "birthDatePartner",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "datetime"
+              }
+            },
+            {
+              "name": "birthPlacePartner",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "countryOfBirthPartner",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "EVJNationality",
+                "polymorphic": false,
+                "properties": [
+                  {
+                    "name": "id",
+                    "comment": "",
+                    "required": true,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "recordOrigin",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "addition",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "group",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "number",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "text",
+                    "comment": "",
+                    "required": true,
+                    "content": {
+                      "type": "localized"
+                    }
+                  },
+                  {
+                    "name": "textShort",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "localized"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "nationalityPartner",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "EVJNationality",
+                "polymorphic": false,
+                "properties": [
+                  {
+                    "name": "id",
+                    "comment": "",
+                    "required": true,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "recordOrigin",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "addition",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "group",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "number",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "text",
+                    "comment": "",
+                    "required": true,
+                    "content": {
+                      "type": "localized"
+                    }
+                  },
+                  {
+                    "name": "textShort",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "localized"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "nationalityPartner2nd",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "EVJNationality",
+                "polymorphic": false,
+                "properties": [
+                  {
+                    "name": "id",
+                    "comment": "",
+                    "required": true,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "recordOrigin",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "addition",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "group",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "number",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "string"
+                    }
+                  },
+                  {
+                    "name": "text",
+                    "comment": "",
+                    "required": true,
+                    "content": {
+                      "type": "localized"
+                    }
+                  },
+                  {
+                    "name": "textShort",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "localized"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "nativePlacePartner",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "id",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "domicil",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "children",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "array<EVJChild>",
+                "content": {
+                  "type": "EVJChild",
+                  "polymorphic": false,
+                  "properties": [
+                    {
+                      "name": "fullName",
+                      "comment": "",
+                      "required": false,
+                      "content": {
+                        "type": "string"
+                      }
+                    },
+                    {
+                      "name": "dateOfBirth",
+                      "comment": "",
+                      "required": false,
+                      "content": {
+                        "type": "datetime"
+                      }
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "name": "provisionExtraInfo",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "EVJProvisionAdditionalCustomerData",
+                "polymorphic": false,
+                "properties": [
+                  {
+                    "name": "maritalStatusSince",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "datetime"
+                    }
+                  },
+                  {
+                    "name": "amountOfChildren",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "number"
+                    }
+                  },
+                  {
+                    "name": "amountOfChildrenEligibleForPension",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "number"
+                    }
+                  },
+                  {
+                    "name": "annualGrossIncome",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "decimal"
+                    }
+                  },
+                  {
+                    "name": "selfEmployed",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "bool"
+                    }
+                  },
+                  {
+                    "name": "ahvCalculationMode",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "number"
+                    }
+                  },
+                  {
+                    "name": "disabilityPension",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "decimal"
+                    }
+                  },
+                  {
+                    "name": "disabilityChildrenPension",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "decimal"
+                    }
+                  },
+                  {
+                    "name": "ahvSpousePension",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "decimal"
+                    }
+                  },
+                  {
+                    "name": "ahvOrphanPension",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "decimal"
+                    }
+                  },
+                  {
+                    "name": "bvgCalculationMode",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "number"
+                    }
+                  },
+                  {
+                    "name": "bvgDisabilityPension",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "decimal"
+                    }
+                  },
+                  {
+                    "name": "bvgDisabilityChildrenPension",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "decimal"
+                    }
+                  },
+                  {
+                    "name": "bvgSpousePension",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "decimal"
+                    }
+                  },
+                  {
+                    "name": "bvgOrphanPension",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "decimal"
+                    }
+                  },
+                  {
+                    "name": "uvgAddOn",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "decimal"
+                    }
+                  },
+                  {
+                    "name": "uvgDisabilityPension",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "decimal"
+                    }
+                  },
+                  {
+                    "name": "uvgSpousePension",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "decimal"
+                    }
+                  },
+                  {
+                    "name": "uvgOrphanPension",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "decimal"
+                    }
+                  },
+                  {
+                    "name": "additionalBenefitItems",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "array<EVJProvisionAdditionalBenefit>",
+                      "content": {
+                        "type": "EVJProvisionAdditionalBenefit",
+                        "polymorphic": false,
+                        "properties": [
+                          {
+                            "name": "type",
+                            "comment": "",
+                            "required": true,
+                            "content": {
+                              "type": "EVJProvisionThirdPillarType",
+                              "polymorphic": false,
+                              "properties": [
+                                {
+                                  "name": "key",
+                                  "comment": "",
+                                  "required": false,
+                                  "content": {
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "titles",
+                                  "comment": "",
+                                  "required": false,
+                                  "content": {
+                                    "type": "localized"
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "name": "disease",
+                            "comment": "",
+                            "required": false,
+                            "content": {
+                              "type": "bool"
+                            }
+                          },
+                          {
+                            "name": "accident",
+                            "comment": "",
+                            "required": false,
+                            "content": {
+                              "type": "bool"
+                            }
+                          },
+                          {
+                            "name": "name",
+                            "comment": "",
+                            "required": false,
+                            "content": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "amount",
+                            "comment": "",
+                            "required": true,
+                            "content": {
+                              "type": "decimal"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "name": "additionalCapitalItems",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "array<EVJProvisionAdditionalCapital>",
+                      "content": {
+                        "type": "EVJProvisionAdditionalCapital",
+                        "polymorphic": false,
+                        "properties": [
+                          {
+                            "name": "type",
+                            "comment": "",
+                            "required": true,
+                            "content": {
+                              "type": "EVJProvisionThirdPillarType",
+                              "polymorphic": false,
+                              "properties": [
+                                {
+                                  "name": "key",
+                                  "comment": "",
+                                  "required": false,
+                                  "content": {
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "titles",
+                                  "comment": "",
+                                  "required": false,
+                                  "content": {
+                                    "type": "localized"
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "name": "disability",
+                            "comment": "",
+                            "required": false,
+                            "content": {
+                              "type": "bool"
+                            }
+                          },
+                          {
+                            "name": "death",
+                            "comment": "",
+                            "required": false,
+                            "content": {
+                              "type": "bool"
+                            }
+                          },
+                          {
+                            "name": "name",
+                            "comment": "",
+                            "required": false,
+                            "content": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "amount",
+                            "comment": "",
+                            "required": true,
+                            "content": {
+                              "type": "decimal"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "retirementExtraInfo",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "EVJRetirementAdditionalCustomerData",
+                "polymorphic": false,
+                "properties": [
+                  {
+                    "name": "netIncome",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "decimal"
+                    }
+                  },
+                  {
+                    "name": "additionalIncome",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "EVJAdditionalIncome",
+                      "polymorphic": false,
+                      "properties": [
+                        {
+                          "name": "amount",
+                          "comment": "",
+                          "required": false,
+                          "content": {
+                            "type": "decimal"
+                          }
+                        },
+                        {
+                          "name": "from",
+                          "comment": "",
+                          "required": false,
+                          "content": {
+                            "type": "datetime"
+                          }
+                        },
+                        {
+                          "name": "to",
+                          "comment": "",
+                          "required": false,
+                          "content": {
+                            "type": "datetime"
+                          }
+                        },
+                        {
+                          "name": "infinite",
+                          "comment": "",
+                          "required": false,
+                          "content": {
+                            "type": "bool"
+                          }
+                        },
+                        {
+                          "name": "untilRegularRetirement",
+                          "comment": "",
+                          "required": false,
+                          "content": {
+                            "type": "bool"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "name": "annualPillarOnePension",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "decimal"
+                    }
+                  },
+                  {
+                    "name": "annualPillarOneAfterSplittingPension",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "decimal"
+                    }
+                  },
+                  {
+                    "name": "annualPillarTwoPensionPerAge",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "dictionary<string, decimal>",
+                      "content": {
+                        "type": "decimal"
+                      }
+                    }
+                  },
+                  {
+                    "name": "annualPillarTwoCapitalWithdrawalsPerAge",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "dictionary<string, decimal>",
+                      "content": {
+                        "type": "decimal"
+                      }
+                    }
+                  },
+                  {
+                    "name": "additionalCapitalItems",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "array<EVJRetirementAdditionalCapital>",
+                      "content": {
+                        "type": "EVJRetirementAdditionalCapital",
+                        "polymorphic": false,
+                        "properties": [
+                          {
+                            "name": "readonly",
+                            "comment": "",
+                            "required": false,
+                            "content": {
+                              "type": "bool"
+                            }
+                          },
+                          {
+                            "name": "category",
+                            "comment": "",
+                            "required": false,
+                            "content": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "date",
+                            "comment": "",
+                            "required": false,
+                            "content": {
+                              "type": "datetime"
+                            }
+                          },
+                          {
+                            "name": "bankName",
+                            "comment": "",
+                            "required": false,
+                            "content": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "amount",
+                            "comment": "",
+                            "required": false,
+                            "content": {
+                              "type": "decimal"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "provisionExtraInfoPartner",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "EVJProvisionAdditionalCustomerData",
+                "polymorphic": false,
+                "properties": [
+                  {
+                    "name": "maritalStatusSince",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "datetime"
+                    }
+                  },
+                  {
+                    "name": "amountOfChildren",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "number"
+                    }
+                  },
+                  {
+                    "name": "amountOfChildrenEligibleForPension",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "number"
+                    }
+                  },
+                  {
+                    "name": "annualGrossIncome",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "decimal"
+                    }
+                  },
+                  {
+                    "name": "selfEmployed",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "bool"
+                    }
+                  },
+                  {
+                    "name": "ahvCalculationMode",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "number"
+                    }
+                  },
+                  {
+                    "name": "disabilityPension",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "decimal"
+                    }
+                  },
+                  {
+                    "name": "disabilityChildrenPension",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "decimal"
+                    }
+                  },
+                  {
+                    "name": "ahvSpousePension",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "decimal"
+                    }
+                  },
+                  {
+                    "name": "ahvOrphanPension",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "decimal"
+                    }
+                  },
+                  {
+                    "name": "bvgCalculationMode",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "number"
+                    }
+                  },
+                  {
+                    "name": "bvgDisabilityPension",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "decimal"
+                    }
+                  },
+                  {
+                    "name": "bvgDisabilityChildrenPension",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "decimal"
+                    }
+                  },
+                  {
+                    "name": "bvgSpousePension",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "decimal"
+                    }
+                  },
+                  {
+                    "name": "bvgOrphanPension",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "decimal"
+                    }
+                  },
+                  {
+                    "name": "uvgAddOn",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "decimal"
+                    }
+                  },
+                  {
+                    "name": "uvgDisabilityPension",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "decimal"
+                    }
+                  },
+                  {
+                    "name": "uvgSpousePension",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "decimal"
+                    }
+                  },
+                  {
+                    "name": "uvgOrphanPension",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "decimal"
+                    }
+                  },
+                  {
+                    "name": "additionalBenefitItems",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "array<EVJProvisionAdditionalBenefit>",
+                      "content": {
+                        "type": "EVJProvisionAdditionalBenefit",
+                        "polymorphic": false,
+                        "properties": [
+                          {
+                            "name": "type",
+                            "comment": "",
+                            "required": true,
+                            "content": {
+                              "type": "EVJProvisionThirdPillarType",
+                              "polymorphic": false,
+                              "properties": [
+                                {
+                                  "name": "key",
+                                  "comment": "",
+                                  "required": false,
+                                  "content": {
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "titles",
+                                  "comment": "",
+                                  "required": false,
+                                  "content": {
+                                    "type": "localized"
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "name": "disease",
+                            "comment": "",
+                            "required": false,
+                            "content": {
+                              "type": "bool"
+                            }
+                          },
+                          {
+                            "name": "accident",
+                            "comment": "",
+                            "required": false,
+                            "content": {
+                              "type": "bool"
+                            }
+                          },
+                          {
+                            "name": "name",
+                            "comment": "",
+                            "required": false,
+                            "content": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "amount",
+                            "comment": "",
+                            "required": true,
+                            "content": {
+                              "type": "decimal"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "name": "additionalCapitalItems",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "array<EVJProvisionAdditionalCapital>",
+                      "content": {
+                        "type": "EVJProvisionAdditionalCapital",
+                        "polymorphic": false,
+                        "properties": [
+                          {
+                            "name": "type",
+                            "comment": "",
+                            "required": true,
+                            "content": {
+                              "type": "EVJProvisionThirdPillarType",
+                              "polymorphic": false,
+                              "properties": [
+                                {
+                                  "name": "key",
+                                  "comment": "",
+                                  "required": false,
+                                  "content": {
+                                    "type": "string"
+                                  }
+                                },
+                                {
+                                  "name": "titles",
+                                  "comment": "",
+                                  "required": false,
+                                  "content": {
+                                    "type": "localized"
+                                  }
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "name": "disability",
+                            "comment": "",
+                            "required": false,
+                            "content": {
+                              "type": "bool"
+                            }
+                          },
+                          {
+                            "name": "death",
+                            "comment": "",
+                            "required": false,
+                            "content": {
+                              "type": "bool"
+                            }
+                          },
+                          {
+                            "name": "name",
+                            "comment": "",
+                            "required": false,
+                            "content": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "amount",
+                            "comment": "",
+                            "required": true,
+                            "content": {
+                              "type": "decimal"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "retirementExtraInfoPartner",
+              "comment": "",
+              "required": false,
+              "content": {
+                "type": "EVJRetirementAdditionalCustomerData",
+                "polymorphic": false,
+                "properties": [
+                  {
+                    "name": "netIncome",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "decimal"
+                    }
+                  },
+                  {
+                    "name": "additionalIncome",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "EVJAdditionalIncome",
+                      "polymorphic": false,
+                      "properties": [
+                        {
+                          "name": "amount",
+                          "comment": "",
+                          "required": false,
+                          "content": {
+                            "type": "decimal"
+                          }
+                        },
+                        {
+                          "name": "from",
+                          "comment": "",
+                          "required": false,
+                          "content": {
+                            "type": "datetime"
+                          }
+                        },
+                        {
+                          "name": "to",
+                          "comment": "",
+                          "required": false,
+                          "content": {
+                            "type": "datetime"
+                          }
+                        },
+                        {
+                          "name": "infinite",
+                          "comment": "",
+                          "required": false,
+                          "content": {
+                            "type": "bool"
+                          }
+                        },
+                        {
+                          "name": "untilRegularRetirement",
+                          "comment": "",
+                          "required": false,
+                          "content": {
+                            "type": "bool"
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "name": "annualPillarOnePension",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "decimal"
+                    }
+                  },
+                  {
+                    "name": "annualPillarOneAfterSplittingPension",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "decimal"
+                    }
+                  },
+                  {
+                    "name": "annualPillarTwoPensionPerAge",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "dictionary<string, decimal>",
+                      "content": {
+                        "type": "decimal"
+                      }
+                    }
+                  },
+                  {
+                    "name": "annualPillarTwoCapitalWithdrawalsPerAge",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "dictionary<string, decimal>",
+                      "content": {
+                        "type": "decimal"
+                      }
+                    }
+                  },
+                  {
+                    "name": "additionalCapitalItems",
+                    "comment": "",
+                    "required": false,
+                    "content": {
+                      "type": "array<EVJRetirementAdditionalCapital>",
+                      "content": {
+                        "type": "EVJRetirementAdditionalCapital",
+                        "polymorphic": false,
+                        "properties": [
+                          {
+                            "name": "readonly",
+                            "comment": "",
+                            "required": false,
+                            "content": {
+                              "type": "bool"
+                            }
+                          },
+                          {
+                            "name": "category",
+                            "comment": "",
+                            "required": false,
+                            "content": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "date",
+                            "comment": "",
+                            "required": false,
+                            "content": {
+                              "type": "datetime"
+                            }
+                          },
+                          {
+                            "name": "bankName",
+                            "comment": "",
+                            "required": false,
+                            "content": {
+                              "type": "string"
+                            }
+                          },
+                          {
+                            "name": "amount",
+                            "comment": "",
+                            "required": false,
+                            "content": {
+                              "type": "decimal"
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "customerGroup",
+      "comment": "If customers contains more than one element this property must not be null and ownerCustomer needs to reference to this group.",
+      "required": false,
+      "content": {
+        "type": "EVJCustomerGroup",
+        "polymorphic": false,
+        "properties": [
+          {
+            "name": "id",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "comment": "",
+            "required": false,
+            "content": {
+              "type": "string"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

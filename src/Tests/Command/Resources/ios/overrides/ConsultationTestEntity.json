@@ -1,0 +1,38 @@
+{
+    "id": "ConsultationTestEntity",
+    "title": "This is a test entity",
+    "description": "A description for the test entity",
+    "service": {
+        "readOnly": false,
+        "routerBase": "/test/entity/",
+        "versioning": false
+    },
+    "target": {
+        "indexes": [
+            "creationDate"
+        ],
+        "fields": [
+            {
+                "name": "anAddedField",
+                "type": "varchar",
+                "title": "Added field",
+                "description": "Added field"
+            },
+            {
+                "name": "fieldToBeAddedStuff",
+                "type": "datetime",
+                "title": "This is an overridden title",
+                "description": "This is an overridden description"
+            }
+        ]
+    },
+    "override": {
+        "removals": {
+            "name": "fieldToBeRemoved"
+        },
+        "relationRemovals": [
+            "customer",
+            "customers"
+        ]
+    }
+}

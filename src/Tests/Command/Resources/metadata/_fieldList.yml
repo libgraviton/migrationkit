@@ -1,0 +1,154 @@
+id:
+    name: id
+    type: varchar
+    description: 'Unique identifier for an item.'
+anotherInt:
+    name: anotherInt
+    type: INT
+    description: 'Just a nice integer'
+    required: true
+testField:
+    name: testField
+    type: varchar
+    title: 'A testing title'
+    description: 'A lengthy and detailed description.'
+    required: true
+    translatable: true
+email:
+    name: email
+    type: varchar
+    title: email
+    description: 'A field containing a email Constraint'
+    constraints: [{ name: Email, options: [{ name: strict, value: 'true' }] }]
+someOtherField:
+    name: someOtherField
+    type: varchar
+    title: 'Another field'
+    description: 'A very nice field'
+    translatable: true
+aBoolean:
+    name: aBoolean
+    type: boolean
+    title: 'Some boolean'
+    description: 'Everybody likes a good ol'' bool'
+    required: true
+optionalBoolean:
+    name: optionalBoolean
+    type: boolean
+    title: 'Some other boolean'
+    description: 'Everybody likes a good ol'' bool'
+someFloatyDouble:
+    name: someFloatyDouble
+    type: double
+    title: 'Floaty double'
+    description: 'An int with precision..'
+modificationDate:
+    name: modificationDate
+    type: datetime
+    title: 'An important date'
+    description: 'Don''t forget to save the date'
+other:
+    name: other
+    type: 'class:Graviton\AnotherEntityBundle\Document\AnotherEntity'
+    title: 'Other stuff'
+    description: 'Other stuff'
+    required: false
+other.id:
+    name: id
+    type: varchar
+    description: 'Unique identifier for an item.'
+other.modificationDate:
+    name: modificationDate
+    type: datetime
+    title: 'An important date'
+    description: 'Don''t forget to save the date'
+other.deepNestedArray.very.deep.glorious.0.object:
+    name: deepNestedArray.very.deep.glorious.0.object
+    type: varchar
+    title: 'Array of deep nested objects'
+    description: 'Deep nesting is good.. is it?'
+other.deepNestedProperty.thisis.one.goes.very.deep.down.thats.good:
+    name: deepNestedProperty.thisis.one.goes.very.deep.down.thats.good
+    type: varchar
+    title: 'Deep string'
+    description: 'This one goes deep...'
+other.someRef.0.ref:
+    name: someRef.0.ref
+    type: extref
+    title: 'Nested array of someRef'
+    exposeAs: $ref
+    collection: [MyOtherEntity]
+others:
+    name: others
+    type: 'class:Graviton\AnotherEntityBundle\Document\AnotherEntity[]'
+    title: 'Other stuff'
+    description: 'Other stuff'
+others.0.id:
+    name: id
+    type: varchar
+    description: 'Unique identifier for an item.'
+others.0.modificationDate:
+    name: modificationDate
+    type: datetime
+    title: 'An important date'
+    description: 'Don''t forget to save the date'
+others.0.deepNestedArray.very.deep.glorious.0.object:
+    name: deepNestedArray.very.deep.glorious.0.object
+    type: varchar
+    title: 'Array of deep nested objects'
+    description: 'Deep nesting is good.. is it?'
+others.0.deepNestedProperty.thisis.one.goes.very.deep.down.thats.good:
+    name: deepNestedProperty.thisis.one.goes.very.deep.down.thats.good
+    type: varchar
+    title: 'Deep string'
+    description: 'This one goes deep...'
+others.0.someRef.0.ref:
+    name: someRef.0.ref
+    type: extref
+    title: 'Nested array of someRef'
+    exposeAs: $ref
+    collection: [MyOtherEntity]
+contactCode.someDate:
+    name: contactCode.someDate
+    type: datetime
+    title: 'Another datetime'
+    description: 'Who doesn''t like a datetime??'
+contactCode.text:
+    name: contactCode.text
+    type: varchar
+    translatable: true
+    title: 'Meaning of the code'
+    description: 'Some text to the code..'
+nestedArray.0.name:
+    name: nestedArray.0.name
+    type: varchar
+    title: 'Name of nested array'
+    description: 'Some text'
+deepNestedArray.very.deep.glorious.0.object:
+    name: deepNestedArray.very.deep.glorious.0.object
+    type: varchar
+    title: 'Array of deep nested objects'
+    description: 'Deep nesting is good.. is it?'
+deepNestedProperty.thisis.one.goes.very.deep.down.thats.good:
+    name: deepNestedProperty.thisis.one.goes.very.deep.down.thats.good
+    type: varchar
+    title: 'Deep string'
+    description: 'This one goes deep...'
+unstructuredObject:
+    name: unstructuredObject
+    type: object
+    title: 'Some data blob'
+    description: 'Unstructured information'
+nestedApps.0.ref:
+    name: nestedApps.0.ref
+    type: extref
+    title: 'Nested array of apps'
+    exposeAs: $ref
+    collection: [App]
+choices:
+    name: choices
+    type: string
+    title: Choices
+    required: true
+    description: 'A field containing an ENum values restricted by constraints'
+    constraints: [{ name: Choice, options: [{ name: choices, value: '<|>|=|>=|<=|<>' }] }]

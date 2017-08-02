@@ -1,0 +1,24 @@
+{
+    "id": "ConsultationOtherEntity",
+    "target": {
+        "fields": [
+            {
+                "name": "someDecimal",
+                "title": "",
+                "description": "",
+                "type": "string",
+                "constraints": [
+                    {
+                        "name": "Decimal"
+                    }
+                ]
+            },
+            {
+                "name": "someNumber",
+                "title": "",
+                "description": "",
+                "type": "float"
+            }
+        ]
+    }
+}
