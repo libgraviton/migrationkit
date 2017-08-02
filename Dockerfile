@@ -8,6 +8,7 @@ RUN chmod a+x /init.sh && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && \
     cd /app && \
     composer install --optimize-autoloader --no-interaction --no-progress && \
+    composer dump-autoload --optimize --no-dev --classmap-authoritative && \
     composer clear-cache
 
 ENTRYPOINT ["/sbin/tini", "--", "/init.sh", "/app/bin/migrationkit"]
