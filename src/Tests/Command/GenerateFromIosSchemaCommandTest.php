@@ -47,7 +47,6 @@ class GenerateFromIosSchemaCommandTest extends TestCase
         $tmpDir = sys_get_temp_dir().DIRECTORY_SEPARATOR.uniqid().DIRECTORY_SEPARATOR;
         $tmpDirYaml = sys_get_temp_dir().DIRECTORY_SEPARATOR.uniqid();
         $fs->mkdir($tmpDir);
-        var_dump($tmpDir);
         $fs->mkdir($tmpDirYaml);
 
         $arguments = [
