@@ -193,6 +193,11 @@ class GenerateMigrationsCommand extends Command
 
         $diff = $this->utils->compute($this->oldDir, $this->newDir);
 
+        if (empty($diff->getDiffs())) {
+            $this->style->section('No differences found, exiting...');
+            exit(0);
+        }
+
         $this->style->title('Showing differences');
 
         $rows = [];
@@ -255,7 +260,15 @@ class GenerateMigrationsCommand extends Command
         // generate migration here
         $this->migrationGenerateUtils->setClassNamespace($input->getArgument('namespace'));
         $this->migrationGenerateUtils->setOutputDirectory($this->migrationsDir);
-        $this->migrationGenerateUtils->generate($diff);
+        $result = $this->migrationGenerateUtils->generate($diff);
+
+        if (is_null($result)) {
+            $this->style->section(
+                'No migration generated, no relevant changes were done (as this tool could detect)...'
+            );
+        } else {
+            $this->style->section('Generated migration '.$result);
+        }
     }
 
     /**
@@ -265,7 +278,7 @@ class GenerateMigrationsCommand extends Command
      */
     private function welcomeScreen()
     {
-        $this->style->title('Welcome to migration-tools');
+        $this->style->title('Welcome to migrationkit!');
 
         $this->style->text(
             [

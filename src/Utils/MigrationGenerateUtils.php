@@ -128,6 +128,11 @@ class MigrationGenerateUtils
             'migData' => base64_encode(serialize($diff))
         ];
 
+        if (empty($diff->getMigrationRelevantDiffs())) {
+            // no migration needed
+            return null;
+        }
+
         $partials = [];
         foreach ($diff->getMigrationRelevantDiffs() as $entityName => $changes) {
             $entityPaths = array_map(
@@ -147,8 +152,10 @@ class MigrationGenerateUtils
             }
         }
 
+        $filename = $this->outputDirectory.'/Version'.$migrationId.'.php';
+
         file_put_contents(
-            $this->outputDirectory.'/Version'.$migrationId.'.php',
+            $filename,
             $template->render(
                 array_merge(
                     $baseParams,
@@ -156,6 +163,8 @@ class MigrationGenerateUtils
                 )
             )
         );
+
+        return $filename;
     }
 
     /**
