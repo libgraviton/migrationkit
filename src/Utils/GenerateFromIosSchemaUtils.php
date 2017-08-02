@@ -27,6 +27,11 @@ class GenerateFromIosSchemaUtils
      */
     private $definitionFile;
 
+    /**
+     * path to overrides
+     *
+     * @var string
+     */
     private $overridePath;
 
     /**
@@ -537,7 +542,7 @@ class GenerateFromIosSchemaUtils
     /**
      * reads all available overrides and returns them as collected array
      *
-     * @return array overrides
+     * @return void
      */
     private function readOverrides()
     {
@@ -556,7 +561,7 @@ class GenerateFromIosSchemaUtils
             }
         }
 
-        return $overrides;
+        $this->overrides = $overrides;
     }
 
     /**
