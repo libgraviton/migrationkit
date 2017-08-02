@@ -2,4 +2,4 @@
 Dockerfile
 docker-compose.yml
 phpunit.xml
-Tests
+src/Tests
