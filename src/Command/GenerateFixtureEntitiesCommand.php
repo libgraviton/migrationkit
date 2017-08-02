@@ -50,9 +50,9 @@ class GenerateFixtureEntitiesCommand extends Command
     private $extRefMapFile;
 
     /**
-     * @var null|string
+     * @var array
      */
-    private $extRefMap;
+    private $extRefMap = [];
 
     /**
      * @param GenerationUtils $generationUtils utils
@@ -354,6 +354,9 @@ class GenerateFixtureEntitiesCommand extends Command
                 } else {
                     $value = $chosen;
                 }
+            }
+            if ($constraint['name'] == 'Email') {
+                $value = $this->faker->companyEmail;
             }
             if ($constraint['name'] == 'Range') {
                 $minVal = 0;
