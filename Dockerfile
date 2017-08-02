@@ -10,4 +10,4 @@ RUN chmod a+x /init.sh && \
     composer install --optimize-autoloader --no-interaction --no-progress && \
     composer clear-cache
 
-ENTRYPOINT ["/sbin/tini", "--", "/init.sh"]
+ENTRYPOINT ["/sbin/tini", "--", "/init.sh", "/app/bin/migrationkit"]
