@@ -35,7 +35,6 @@ class GenerateDefinitionMetadataCommandTest extends TestCase
     public function createCommand()
     {
         $this->sut = new GenerateDefinitionMetadataCommand(
-            new MetadataUtils(),
             new Finder()
         );
         $this->output = $this->getMockBuilder(OutputInterface::class)

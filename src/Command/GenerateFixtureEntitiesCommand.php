@@ -8,10 +8,10 @@ namespace Graviton\MigrationKit\Command;
 use Faker\Factory;
 use Graviton\MigrationKit\Utils\GenerationUtils;
 use JsonPath\JsonObject;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Yaml\Yaml;
@@ -21,7 +21,7 @@ use Symfony\Component\Yaml\Yaml;
  * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
  * @link     http://swisscom.ch
  */
-class GenerateFixtureEntitiesCommand extends Command
+class GenerateFixtureEntitiesCommand extends BaseCommand
 {
 
     /**
@@ -84,9 +84,9 @@ class GenerateFixtureEntitiesCommand extends Command
                 new InputDefinition(
                     [
                     new InputArgument(
-                        'metaDir',
+                        'definitionDir',
                         InputArgument::REQUIRED,
-                        'Where to read the YML metafiles from.'
+                        'Directory with service definitions'
                     ),
                     new InputArgument(
                         'outputDir',
@@ -99,10 +99,17 @@ class GenerateFixtureEntitiesCommand extends Command
                         'Amount of entities to generate',
                         10
                     ),
-                    new InputArgument(
+                    new InputOption(
                         'refMap',
-                        InputArgument::OPTIONAL,
+                        'r',
+                        InputOption::VALUE_REQUIRED,
                         'Path to an optional refMap File, mapping extref Collections to urls'
+                    ),
+                    new InputOption(
+                        'exposedEntity',
+                        'e',
+                        InputOption::VALUE_REQUIRED,
+                        'If the directory contains multiple exposed entities, provide the targetted one'
                     )
                     ]
                 )
@@ -126,8 +133,14 @@ class GenerateFixtureEntitiesCommand extends Command
             $outputDir .= '/';
         }
 
-        $this->ymlDir = $input->getArgument('metaDir');
-        $this->extRefMapFile = $input->getArgument('refMap');
+        $definitionDir = $input->getArgument('definitionDir');
+
+        $this->ymlDir = $this->generateMetadataFromDefinitionDir(
+            $definitionDir,
+            $input->getOption('exposedEntity')
+        );
+
+        $this->extRefMapFile = $input->getOption('refMap');
 
         // extrefmap file?
         if (!is_null($this->extRefMapFile)) {
