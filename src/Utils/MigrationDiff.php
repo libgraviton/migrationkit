@@ -8,6 +8,7 @@ namespace Graviton\MigrationKit\Utils;
 use Diff\DiffOp\DiffOp;
 use Graviton\MigrationKit\Utils\Conflict\ConflictAbstract;
 use Graviton\MigrationKit\Utils\Conflict\Scanner\ConflictScannerAbstract;
+use Graviton\MigrationKit\Utils\Conflict\Scanner\MissingRequiredDefaultConflictScanner;
 use Graviton\MigrationKit\Utils\Conflict\Scanner\UnclearRenameConflictScanner;
 
 /**
@@ -49,7 +50,8 @@ class MigrationDiff
     public function __construct(array $diffs)
     {
         $this->conflictScanners = [
-            new UnclearRenameConflictScanner()
+            new UnclearRenameConflictScanner(),
+            new MissingRequiredDefaultConflictScanner()
         ];
         $this->diffs = $diffs;
         $this->computeConflicts();

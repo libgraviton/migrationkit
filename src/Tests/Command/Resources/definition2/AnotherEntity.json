@@ -1,0 +1,43 @@
+{
+  "id": "AnotherEntity",
+  "description": "Another Example",
+  "target": {
+    "indexes": [],
+    "relations": [],
+    "fields": [
+      {
+        "name": "id",
+        "type": "varchar",
+        "description": "Unique identifier for an item."
+      },
+      {
+        "name": "modificationDate",
+        "type": "datetime",
+        "title": "An important date",
+        "required": true,
+        "description": "Don't forget to save the date"
+      },
+      {
+        "name": "deepNestedArray.very.deep.glorious.0.object",
+        "type": "varchar",
+        "title": "Array of deep nested objects",
+        "description": "Deep nesting is good.. is it?"
+      },
+      {
+        "name": "deepNestedProperty.thisis.one.goes.very.deep.down.thats.good",
+        "type": "varchar",
+        "title": "Deep string",
+        "description": "This one goes deep..."
+      },
+      {
+        "name": "someRef.0.ref",
+        "type": "extref",
+        "title": "Nested array of someRef",
+        "exposeAs": "$ref",
+        "collection": [
+          "MyOtherEntity"
+        ]
+      }
+    ]
+  }
+}

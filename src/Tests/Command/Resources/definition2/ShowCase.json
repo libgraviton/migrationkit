@@ -18,7 +18,7 @@
         "name": "anotherInt",
         "type": "INT",
         "description": "Just a nice integer",
-        "required": false
+        "required": true
       },
       {
         "name": "testField",
