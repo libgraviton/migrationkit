@@ -106,7 +106,7 @@ wants to understand/do business stuff out of the structures.
 #### The `refMap` file
 
 In order to generate valid `extref` fields, you may have to specify an `refMap` file
-(argument `refMap` to the command).
+(option `--refMap` to the command).
 
 This is a simple YAML file that maps the `Collection` attribute in the field to an URL.
 
