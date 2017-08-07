@@ -5,15 +5,10 @@
 
 namespace Graviton\MigrationKit\Command;
 
-use Graviton\MigrationKit\Utils\GenerateFromIosSchemaUtils;
-use Graviton\MigrationKit\Utils\MetadataUtils;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 
 /**
@@ -21,13 +16,8 @@ use Symfony\Component\Finder\Finder;
  * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
  * @link     http://swisscom.ch
  */
-class GenerateDefinitionMetadataCommand extends Command
+class GenerateDefinitionMetadataCommand extends BaseCommand
 {
-
-    /**
-     * @var MetadataUtils
-     */
-    private $metadataUtils;
 
     /**
      * @var Finder
@@ -35,15 +25,12 @@ class GenerateDefinitionMetadataCommand extends Command
     private $finder;
 
     /**
-     * @param MetadataUtils $metadataUtils metadata utils
-     * @param Finder        $finder        finder
+     * @param Finder $finder finder
      */
     public function __construct(
-        MetadataUtils $metadataUtils,
         Finder $finder
     ) {
         parent::__construct();
-        $this->metadataUtils = $metadataUtils;
         $this->finder = $finder;
     }
 

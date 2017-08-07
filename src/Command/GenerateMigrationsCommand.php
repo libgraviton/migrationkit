@@ -10,17 +10,14 @@ use Diff\DiffOp\DiffOpAdd;
 use Diff\DiffOp\DiffOpRemove;
 use Graviton\MigrationKit\Utils\GenerateFromIosSchemaUtils;
 use Graviton\MigrationKit\Utils\GenerationUtils;
-use Graviton\MigrationKit\Utils\MetadataUtils;
 use Graviton\MigrationKit\Utils\MigrationGenerateUtils;
 use Graviton\MigrationKit\Utils\MigrationUtils;
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\TableSeparator;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
-use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\Finder\Finder;
 
 /**
@@ -28,7 +25,7 @@ use Symfony\Component\Finder\Finder;
  * @license  http://opensource.org/licenses/gpl-license.php GNU Public License
  * @link     http://swisscom.ch
  */
-class GenerateMigrationsCommand extends Command
+class GenerateMigrationsCommand extends BaseCommand
 {
 
     const OP_CHANGE = 'M';
@@ -85,11 +82,6 @@ class GenerateMigrationsCommand extends Command
     private $generationUtils;
 
     /**
-     * @var MetadataUtils $metadataUtils
-     */
-    private $metadataUtils;
-
-    /**
      * @var Finder
      */
     private $finder;
@@ -103,21 +95,18 @@ class GenerateMigrationsCommand extends Command
      * @param MigrationUtils         $utils                  MigrationUtils
      * @param MigrationGenerateUtils $migrationGenerateUtils MigrationGenerateUtils
      * @param GenerationUtils        $generationUtils        GenerationUtils
-     * @param MetadataUtils          $metadataUtils          MetadataUtils
      * @param Finder                 $finder                 Finder
      */
     public function __construct(
         MigrationUtils $utils,
         MigrationGenerateUtils $migrationGenerateUtils,
         GenerationUtils $generationUtils,
-        MetadataUtils $metadataUtils,
         Finder $finder
     ) {
         parent::__construct();
         $this->utils = $utils;
         $this->migrationGenerateUtils = $migrationGenerateUtils;
         $this->generationUtils = $generationUtils;
-        $this->metadataUtils = $metadataUtils;
         $this->finder = $finder;
     }
 
@@ -323,24 +312,10 @@ class GenerateMigrationsCommand extends Command
         }
 
         // generate metadata
-        $this->metadataUtils->setFinder($this->finder);
-        $this->metadataUtils->setExposedEntityName($exposedEntity);
-
-        $this->oldYmlDir = sys_get_temp_dir().'/gr'.uniqid();
-        mkdir($this->oldYmlDir);
-        $this->newYmlDir = sys_get_temp_dir().'/gr'.uniqid();
-        mkdir($this->newYmlDir);
-
-        $this->metadataUtils->setSourceDir($this->oldDir);
-        $this->metadataUtils->setOutputDir($this->oldYmlDir);
-        $this->metadataUtils->generate();
-
+        $this->oldYmlDir = $this->generateMetadataFromDefinitionDir($this->oldDir, $exposedEntity);
         $this->style->progressAdvance(50);
 
-        $this->metadataUtils->setSourceDir($this->newDir);
-        $this->metadataUtils->setOutputDir($this->newYmlDir);
-        $this->metadataUtils->generate();
-
+        $this->newYmlDir = $this->generateMetadataFromDefinitionDir($this->newDir, $exposedEntity);
         $this->style->progressAdvance(40);
         $this->style->progressFinish();
     }

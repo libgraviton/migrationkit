@@ -48,10 +48,10 @@ class GenerateFixtureEntitiesCommandTest extends TestCase
         $fs->mkdir($tmpDir);
 
         $arguments = [
-            'metaDir' => __DIR__.'/Resources/metadata/',
+            'definitionDir' => __DIR__.'/Resources/definition/',
             'outputDir' => $tmpDir,
             'number' => 3,
-            'refMap' => __DIR__.'/Resources/metadata/refMap.yml'
+            '--refMap' => __DIR__.'/Resources/metadata/refMap.yml'
         ];
 
         $input = new ArrayInput($arguments);
