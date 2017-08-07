@@ -42,7 +42,6 @@ $application->add(
             $twig
         ),
         new GenerationUtils(),
-        new MetadataUtils(),
         new Finder()
     )
 );
@@ -54,7 +53,6 @@ $application->add(
 );
 $application->add(
     new GenerateDefinitionMetadataCommand(
-        new MetadataUtils(),
         new Finder()
     )
 );
