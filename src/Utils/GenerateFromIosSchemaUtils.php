@@ -82,6 +82,17 @@ class GenerateFromIosSchemaUtils
     ];
 
     /**
+     * iOS types that are references (containing an extref)
+     *
+     * @var array
+     */
+    private $referenceTypes = [
+        'EVJReference',
+        'EVJRemoteFileReference',
+        'EVJTypedReference'
+    ];
+
+    /**
      * @var array generated types
      */
     private $types = [];
@@ -430,7 +441,7 @@ class GenerateFromIosSchemaUtils
                         $iOsType = 'any';
                     }
 
-                    if ($iOsType != 'any' && $iOsType != 'EVJReference') {
+                    if ($iOsType != 'any' && !in_array($iOsType, $this->referenceTypes)) {
                         if (empty($path)) {
                             $subPath = $def['name'];
                         } else {
@@ -447,7 +458,7 @@ class GenerateFromIosSchemaUtils
                     if ($isArray === true) {
                         $typeDef['name'] = $def['name'].'.0';
                     }
-                } elseif ($iOsType == 'EVJReference' && $isArray == true) {
+                } elseif (in_array($iOsType, $this->referenceTypes) && $isArray == true) {
                     $typeDef['type'] = 'extref';
                     $typeDef['name'] = $def['name'].'.0.ref';
                     $typeDef['exposeAs'] = '$ref';
